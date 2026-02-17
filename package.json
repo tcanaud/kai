@@ -1,0 +1,7 @@
+{
+  "name": "kai",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

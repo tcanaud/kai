@@ -1,0 +1,15 @@
+[submodule "packages/adr-system"]
+	path = packages/adr-system
+	url = https://github.com/tcanaud/adr-system.git
+[submodule "packages/agreement-system"]
+	path = packages/agreement-system
+	url = https://github.com/tcanaud/agreement-system.git
+[submodule "packages/feature-lifecycle"]
+	path = packages/feature-lifecycle
+	url = https://github.com/tcanaud/feature-lifecycle.git
+[submodule "packages/mermaid-workbench"]
+	path = packages/mermaid-workbench
+	url = https://github.com/tcanaud/mermaid-workbench.git
+[submodule "packages/tcsetup"]
+	path = packages/tcsetup
+	url = https://github.com/tcanaud/tcsetup.git
