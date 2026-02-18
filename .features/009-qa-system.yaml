@@ -1,0 +1,71 @@
+feature_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "009-qa-system"
+title: "QA System"
+status: "active"
+owner: "tcanaud"
+created: "2026-02-18"
+updated: "2026-02-18"
+workflow_path: "full"
+
+# ── Dependencies ──────────────────────────────────────
+depends_on: []
+tags: []
+
+# ── Lifecycle (computed) ──────────────────────────────
+lifecycle:
+  stage: "test"
+  stage_since: "2026-02-18"
+  progress: 1.0
+  manual_override: null
+
+# ── Artifacts (computed from scan) ────────────────────
+artifacts:
+  bmad:
+    prd: true
+    architecture: false
+    epics: false
+  speckit:
+    spec: true
+    plan: true
+    research: true
+    tasks: true
+    contracts: true
+    tasks_done: 17
+    tasks_total: 17
+  agreement:
+    exists: true
+    status: "active"
+    check: "PASS"
+  adr:
+    count: 0
+    ids: []
+  mermaid:
+    count: 0
+    layers:
+      L0: 0
+      L1: 0
+      L2: 0
+
+# ── Health (computed) ─────────────────────────────────
+health:
+  overall: "WARNING"
+  agreement: "PASS"
+  spec_completeness: 1.0
+  task_progress: 1.0
+  adr_coverage: 0
+  diagram_coverage: 0
+  warnings:
+    - "adr_coverage == 0: No ADR directly references this feature (global ADRs apply by scope)"
+
+# ── Regression Detection ─────────────────────────────
+last_scan:
+  timestamp: "2026-02-18T18:00:00Z"
+  stage: "test"
+  artifacts_snapshot:
+    bmad_prd: true
+    speckit_spec: true
+    speckit_plan: true
+    speckit_tasks: true
+    agreement_exists: true

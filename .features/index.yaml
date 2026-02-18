@@ -53,3 +53,15 @@ features:
     stage: "ideation"
     progress: 0.0
     health: "HEALTHY"
+  - id: "009-qa-system"
+    title: "QA System"
+    status: "active"
+    stage: "test"
+    progress: 1.0
+    health: "WARNING"
+  - id: "010-feature-lifecycle-v2"
+    title: "Feature Lifecycle V2"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"

@@ -19,3 +19,6 @@
 [submodule "packages/product-manager"]
 	path = packages/product-manager
 	url = https://github.com/tcanaud/product-manager.git
+[submodule "packages/qa-system"]
+	path = packages/qa-system
+	url = https://github.com/tcanaud/qa-system.git

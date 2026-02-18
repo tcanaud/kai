@@ -1,0 +1,104 @@
+# Agreement Template v1
+# Convention: one file per feature, one feature = one agreement = one promise
+# Feature ID follows Spec Kit convention: ###-feature-name
+
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "009-qa-system"
+title: "QA System"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+# Source: BMAD PRD + Spec Kit spec
+intent: |
+  Close the kai governance loop by generating executable test scripts from
+  spec.md acceptance criteria and agreement.yaml interfaces, executing them
+  to produce a binary PASS/FAIL verdict, and feeding non-blocking findings
+  back into .product/inbox/ with full traceability.
+
+user_outcomes:
+  - "Developer gets mechanical proof that acceptance criteria are satisfied before PR creation"
+  - "Reviewer understands what was verified, how, and with what results — without tribal knowledge"
+  - "Developer checks test plan freshness across all features in one command"
+
+acceptance_criteria:
+  - criterion: "/qa.plan generates at least one executable test script per acceptance criterion in spec.md"
+    verifiable: true
+  - criterion: "/qa.run produces a binary PASS/FAIL verdict with per-script failure detail"
+    verifiable: true
+  - criterion: "Stale test plans (checksum mismatch) are rejected with direction to regenerate"
+    verifiable: true
+  - criterion: "Non-blocking findings deposited in .product/inbox/ include script path, result, and criterion link"
+    verifiable: true
+  - criterion: "/qa.check reports per-feature freshness status across all features"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+# Source: Spec Kit plan.md
+interfaces:
+  - type: "cli"
+    path: "npx @tcanaud/qa-system init"
+    contract: "Scaffold .qa/ directory and install slash command templates to .claude/commands/"
+  - type: "cli"
+    path: "npx @tcanaud/qa-system update"
+    contract: "Replace command templates with latest versions"
+  - type: "cli"
+    path: "/qa.plan {feature}"
+    contract: "Generate test scripts in .qa/{feature}/scripts/ with _index.yaml mapping"
+  - type: "cli"
+    path: "/qa.run {feature}"
+    contract: "Execute scripts, produce PASS/FAIL verdict, deposit findings in .product/inbox/"
+  - type: "cli"
+    path: "/qa.check"
+    contract: "Report per-feature freshness status via SHA-256 checksum comparison"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Zero runtime dependencies — node: protocol imports only"
+  - type: "compatibility"
+    description: "Generated artifacts must be git-friendly (text-only, <100KB each)"
+  - type: "performance"
+    description: "First /qa.plan → /qa.run → verdict in a single Claude Code session"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad:
+    - ".bmad_output/planning-artifacts/009-qa-system/product-brief-kai-2026-02-18.md"
+    - ".bmad_output/planning-artifacts/009-qa-system/prd.md"
+  speckit:
+    - "specs/009-qa-system/spec.md"
+    - "specs/009-qa-system/plan.md"
+    - "specs/009-qa-system/tasks.md"
+    - "specs/009-qa-system/research.md"
+    - "specs/009-qa-system/data-model.md"
+    - "specs/009-qa-system/quickstart.md"
+    - "specs/009-qa-system/contracts/"
+  code:
+    - "packages/qa-system/"
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-git-submodule-monorepo.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+    - ".adr/global/20260218-use-adr-system.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad:
+    - ".bmad_output/planning-artifacts/009-qa-system/"
+  speckit:
+    - "specs/009-qa-system/"
+  code:
+    - "packages/qa-system/"
+
+checksums: {}
