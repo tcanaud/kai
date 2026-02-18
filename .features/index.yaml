@@ -47,3 +47,9 @@ features:
     stage: "test"
     progress: 1.0
     health: "WARNING"
+  - id: "008-product-manager"
+    title: "Product Manager"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"
