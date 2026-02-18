@@ -48,3 +48,11 @@ agreements:
     path: "007-knowledge-system/agreement.yaml"
     created: "2026-02-18"
     updated: "2026-02-18"
+
+  - feature_id: "009-qa-system"
+    title: "QA System"
+    status: "active"
+    path: "009-qa-system/agreement.yaml"
+    created: "2026-02-18"
+    updated: "2026-02-18"
+    synced: "2026-02-18"
