@@ -2,7 +2,7 @@
 id: create-new-package
 title: "How to create a new kai package"
 created: "2026-02-18"
-last_verified: "2026-02-18T05:34:16Z"
+last_verified: "2026-02-18T09:31:59Z"
 references:
   conventions:
     - "conv-001-esm-zero-deps"

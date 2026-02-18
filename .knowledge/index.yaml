@@ -1,7 +1,13 @@
 version: "1.0"
-generated: "2026-02-18T05:34:28.792Z"
+generated: "2026-02-18T09:32:08.191Z"
 
 guides:
+  - id: commit-and-push
+    title: "How to commit and push in the kai monorepo"
+    path: .knowledge/guides/commit-and-push.md
+    summary: "The kai repo is a git-submodule monorepo: the parent repo tracks pointers to independent package repos under `package..."
+    topics: [commit, push, git, submodule, tag, publish, version bump, ci/cd, workflow]
+    status: verified
   - id: create-new-package
     title: "How to create a new kai package"
     path: .knowledge/guides/create-new-package.md
