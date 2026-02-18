@@ -9,23 +9,41 @@ features:
     title: "Architecture Decision Records"
     status: "active"
     stage: "release"
+    progress: 1.0
+    health: "HEALTHY"
   - id: "002-agreement-system"
     title: "Agreement System"
     status: "active"
     stage: "release"
+    progress: 1.0
+    health: "HEALTHY"
   - id: "003-feature-lifecycle"
     title: "Feature Lifecycle Tracker"
     status: "active"
     stage: "release"
+    progress: 1.0
+    health: "HEALTHY"
   - id: "004-mermaid-workbench"
     title: "Mermaid Workbench"
     status: "active"
     stage: "release"
+    progress: 1.0
+    health: "HEALTHY"
   - id: "005-tcsetup"
     title: "TC Setup (Bootstrapper)"
     status: "active"
     stage: "release"
+    progress: 1.0
+    health: "HEALTHY"
   - id: "006-tcsetup-update"
     title: "Tcsetup Update"
     status: "active"
     stage: "test"
+    progress: 1.0
+    health: "WARNING"
+  - id: "007-knowledge-system"
+    title: "Knowledge System"
+    status: "active"
+    stage: "test"
+    progress: 1.0
+    health: "WARNING"

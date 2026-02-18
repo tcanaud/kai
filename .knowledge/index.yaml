@@ -1,0 +1,106 @@
+version: "1.0"
+generated: "2026-02-18T05:01:49.891Z"
+
+guides:
+  []
+
+conventions:
+  - id: conv-001-esm-zero-deps
+    title: "Convention: ESM-Only Modules with Zero Runtime Dependencies"
+    path: .agreements/conv-001-esm-zero-deps/agreement.yaml
+    summary: "All packages in the kai toolchain use ES modules exclusively (\"type\": \"module\""
+    topics: [esm, only, modules, zero, runtime, dependencies]
+  - id: conv-002-cli-entry-structure
+    title: "Convention: Uniform CLI Entry Point Structure"
+    path: .agreements/conv-002-cli-entry-structure/agreement.yaml
+    summary: "Every package follows an identical CLI skeleton: bin/cli.js is the entry"
+    topics: [uniform, cli, entry, point, structure]
+  - id: conv-003-file-based-artifacts
+    title: "Convention: File-Based Artifact Model"
+    path: .agreements/conv-003-file-based-artifacts/agreement.yaml
+    summary: "All development artifacts (features, agreements, ADRs, diagrams) are stored"
+    topics: [file, based, artifact, model]
+  - id: conv-004-submodule-packages
+    title: "Convention: Git Submodule Package Isolation"
+    path: .agreements/conv-004-submodule-packages/agreement.yaml
+    summary: "Each package under packages/ is an independent git repository mounted as a"
+    topics: [git, submodule, package, isolation]
+  - id: conv-005-claude-commands
+    title: "Convention: Claude Code Slash Command Integration"
+    path: .agreements/conv-005-claude-commands/agreement.yaml
+    summary: "Every package installs AI-friendly prompt templates into .claude/commands/"
+    topics: [claude, code, slash, command, integration]
+  - id: conv-006-trusted-publishing
+    title: "Convention: Trusted npm Publishing via GitHub Actions"
+    path: .agreements/conv-006-trusted-publishing/agreement.yaml
+    summary: "Every package publishes to npm via a GitHub Actions workflow triggered by"
+    topics: [trusted, npm, publishing, via, github, actions]
+
+adrs:
+  - id: 20260218-claude-code-as-primary-ai-interface
+    title: "Claude Code as Primary AI Interface"
+    path: .adr/global/20260218-claude-code-as-primary-ai-interface.md
+    summary: "The kai toolchain needs a user interface for day-to-day development workflows: creating ADRs, checking agreement drif..."
+    topics: [architecture, ai, developer-experience]
+    status: accepted
+  - id: 20260218-esm-only-zero-deps
+    title: "ESM-Only Modules with Zero Runtime Dependencies"
+    path: .adr/global/20260218-esm-only-zero-deps.md
+    summary: "The kai toolchain consists of CLI packages that users install via npx. Each invocation downloads the package, runs it..."
+    topics: [runtime, dependencies, modules]
+    status: accepted
+  - id: 20260218-file-based-artifact-tracking
+    title: "File-Based Artifact Tracking"
+    path: .adr/global/20260218-file-based-artifact-tracking.md
+    summary: "The kai toolchain manages several types of development artifacts: architecture decisions (ADRs), feature agreements, ..."
+    topics: [architecture, state-management, artifacts]
+    status: accepted
+  - id: 20260218-git-submodule-monorepo
+    title: "Git Submodule Monorepo for Package Isolation"
+    path: .adr/global/20260218-git-submodule-monorepo.md
+    summary: "The kai toolchain contains 5 packages that are published independently to npm. We need a repository structure that al..."
+    topics: [architecture, monorepo, packaging]
+    status: accepted
+  - id: 20260218-use-adr-system
+    title: "Use Architecture Decision Records"
+    path: .adr/global/20260218-use-adr-system.md
+    summary: "We need to record the architectural decisions made in this project so that future team members can understand why dec..."
+    topics: [meta, tooling]
+    status: accepted
+
+features:
+  - id: 001-adr-system
+    title: "Architecture Decision Records"
+    path: .features/001-adr-system.yaml
+    stage: release
+    topics: [architecture, decision, records]
+  - id: 002-agreement-system
+    title: "Agreement System"
+    path: .features/002-agreement-system.yaml
+    stage: release
+    topics: [agreement, system]
+  - id: 003-feature-lifecycle
+    title: "Feature Lifecycle Tracker"
+    path: .features/003-feature-lifecycle.yaml
+    stage: release
+    topics: [feature, lifecycle, tracker]
+  - id: 004-mermaid-workbench
+    title: "Mermaid Workbench"
+    path: .features/004-mermaid-workbench.yaml
+    stage: release
+    topics: [mermaid, workbench]
+  - id: 005-tcsetup
+    title: "TC Setup (Bootstrapper)"
+    path: .features/005-tcsetup.yaml
+    stage: release
+    topics: [setup, (bootstrapper)]
+  - id: 006-tcsetup-update
+    title: "Tcsetup Update"
+    path: .features/006-tcsetup-update.yaml
+    stage: test
+    topics: [tcsetup, update]
+  - id: 007-knowledge-system
+    title: "Knowledge System"
+    path: .features/007-knowledge-system.yaml
+    stage: test
+    topics: [knowledge, system]

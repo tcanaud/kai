@@ -1,0 +1,72 @@
+{
+  "generated": "2026-02-18",
+  "total_features": 7,
+  "by_stage": {
+    "release": 5,
+    "test": 2
+  },
+  "by_health": {
+    "HEALTHY": 5,
+    "WARNING": 2
+  },
+  "features": [
+    {
+      "id": "001-adr-system",
+      "title": "Architecture Decision Records",
+      "stage": "release",
+      "progress": 100,
+      "health": "HEALTHY",
+      "agreement": "none"
+    },
+    {
+      "id": "002-agreement-system",
+      "title": "Agreement System",
+      "stage": "release",
+      "progress": 100,
+      "health": "HEALTHY",
+      "agreement": "none"
+    },
+    {
+      "id": "003-feature-lifecycle",
+      "title": "Feature Lifecycle Tracker",
+      "stage": "release",
+      "progress": 100,
+      "health": "HEALTHY",
+      "agreement": "none"
+    },
+    {
+      "id": "004-mermaid-workbench",
+      "title": "Mermaid Workbench",
+      "stage": "release",
+      "progress": 100,
+      "health": "HEALTHY",
+      "agreement": "none"
+    },
+    {
+      "id": "005-tcsetup",
+      "title": "TC Setup (Bootstrapper)",
+      "stage": "release",
+      "progress": 100,
+      "health": "HEALTHY",
+      "agreement": "none"
+    },
+    {
+      "id": "006-tcsetup-update",
+      "title": "Tcsetup Update",
+      "stage": "test",
+      "progress": 100,
+      "health": "WARNING",
+      "agreement": "draft",
+      "tasks": { "done": 6, "total": 6 }
+    },
+    {
+      "id": "007-knowledge-system",
+      "title": "Knowledge System",
+      "stage": "test",
+      "progress": 100,
+      "health": "WARNING",
+      "agreement": "draft",
+      "tasks": { "done": 28, "total": 28 }
+    }
+  ]
+}

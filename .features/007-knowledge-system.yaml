@@ -1,0 +1,74 @@
+feature_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "007-knowledge-system"
+title: "Knowledge System"
+status: "active"
+owner: "tcanaud"
+created: "2026-02-18"
+updated: "2026-02-18"
+
+# ── Dependencies ──────────────────────────────────────
+depends_on: []
+tags:
+  - "knowledge"
+  - "onboarding"
+  - "freshness"
+  - "guides"
+
+# ── Lifecycle (computed) ──────────────────────────────
+lifecycle:
+  stage: "test"
+  stage_since: "2026-02-18"
+  progress: 1.0
+  manual_override: null
+
+# ── Artifacts (computed from scan) ────────────────────
+artifacts:
+  bmad:
+    prd: false
+    architecture: false
+    epics: false
+  speckit:
+    spec: true
+    plan: true
+    research: true
+    tasks: true
+    contracts: true
+    tasks_done: 28
+    tasks_total: 28
+  agreement:
+    exists: true
+    status: "draft"
+    check: "PENDING"
+  adr:
+    count: 0
+    ids: []
+  mermaid:
+    count: 0
+    layers:
+      L0: 0
+      L1: 0
+      L2: 0
+
+# ── Health (computed) ─────────────────────────────────
+health:
+  overall: "WARNING"
+  agreement: "PENDING"
+  spec_completeness: 1.0
+  task_progress: 1.0
+  adr_coverage: 0
+  diagram_coverage: 0
+  warnings:
+    - "No ADRs reference this feature"
+
+# ── Regression Detection ─────────────────────────────
+last_scan:
+  timestamp: "2026-02-18T00:00:00Z"
+  stage: "test"
+  artifacts_snapshot:
+    bmad_prd: false
+    speckit_spec: true
+    speckit_plan: true
+    speckit_tasks: true
+    agreement_exists: true
