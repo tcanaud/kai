@@ -7,7 +7,7 @@
 Execute:
 
 ```bash
-npx knowledge-system refresh
+npx @tcanaud/knowledge-system refresh
 ```
 
 This regenerates `.knowledge/snapshot.md` and `.knowledge/index.yaml` from current project artifacts (conventions, ADRs, features, guides).

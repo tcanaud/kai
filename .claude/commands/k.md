@@ -9,7 +9,7 @@ Follow these steps exactly:
 ### 1. Check prerequisites
 
 Verify `.knowledge/` directory exists. If not, report:
-> "Knowledge system not initialized. Run `/knowledge.refresh` or `npx knowledge-system init` first."
+> "Knowledge system not initialized. Run `/knowledge.refresh` or `npx @tcanaud/knowledge-system init` first."
 
 ### 2. Read the knowledge index
 

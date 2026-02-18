@@ -23,11 +23,11 @@ user_outcomes:
 acceptance_criteria:
   - criterion: "/k returns assembled answers with source citations each tagged VERIFIED or STALE"
     verifiable: true
-  - criterion: "npx knowledge-system refresh scans conventions, ADRs, features, and guides into index.yaml + snapshot.md"
+  - criterion: "npx @tcanaud/knowledge-system refresh scans conventions, ADRs, features, and guides into index.yaml + snapshot.md"
     verifiable: true
-  - criterion: "npx knowledge-system check detects stale guides by comparing watched_paths against git history"
+  - criterion: "npx @tcanaud/knowledge-system check detects stale guides by comparing watched_paths against git history"
     verifiable: true
-  - criterion: "npx knowledge-system init scaffolds .knowledge/ idempotently with config, index, architecture, guides/, and Claude commands"
+  - criterion: "npx @tcanaud/knowledge-system init scaffolds .knowledge/ idempotently with config, index, architecture, guides/, and Claude commands"
     verifiable: true
   - criterion: "/knowledge.create produces properly frontmatted guides that integrate with refresh and check"
     verifiable: true
@@ -35,16 +35,16 @@ acceptance_criteria:
 # ── Interfaces ────────────────────────────────────────
 interfaces:
   - type: "cli"
-    path: "npx knowledge-system init [--yes]"
+    path: "npx @tcanaud/knowledge-system init [--yes]"
     contract: "Scaffold .knowledge/ directory — idempotent, preserves existing content"
   - type: "cli"
-    path: "npx knowledge-system update"
+    path: "npx @tcanaud/knowledge-system update"
     contract: "Refresh command templates without touching user content"
   - type: "cli"
-    path: "npx knowledge-system refresh"
+    path: "npx @tcanaud/knowledge-system refresh"
     contract: "Scan all artifacts, rebuild index.yaml and snapshot.md"
   - type: "cli"
-    path: "npx knowledge-system check"
+    path: "npx @tcanaud/knowledge-system check"
     contract: "Verify guide freshness — exit 0 if clean, exit 1 if stale"
   - type: "cli"
     path: "/k <question>"

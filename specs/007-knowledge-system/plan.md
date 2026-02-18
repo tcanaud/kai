@@ -214,8 +214,8 @@ The `/knowledge.create` slash command:
 
 ### tcsetup Integration
 
-- **installer.js**: Add step `{ name: "Knowledge System", flag: "--skip-knowledge", cmd: "npx knowledge-system init" }`
-- **updater.js**: Add tool `{ name: "Knowledge System", marker: ".knowledge", pkg: "knowledge-system", cmd: "npx knowledge-system update" }`
+- **installer.js**: Add step `{ name: "Knowledge System", flag: "--skip-knowledge", cmd: "npx @tcanaud/knowledge-system init" }`
+- **updater.js**: Add tool `{ name: "Knowledge System", marker: ".knowledge", pkg: "@tcanaud/knowledge-system", cmd: "npx @tcanaud/knowledge-system update" }`
 - **cli.js**: Update help text with `--skip-knowledge` flag
 
 ### Post-install Hook
@@ -223,7 +223,7 @@ The `/knowledge.create` slash command:
 After `tcsetup init` or `tcsetup update` runs knowledge-system, the updater should also call `refresh` to populate the initial snapshot:
 
 ```
-npx knowledge-system update && npx knowledge-system refresh
+npx @tcanaud/knowledge-system update && npx @tcanaud/knowledge-system refresh
 ```
 
 ### Read-only Access Pattern

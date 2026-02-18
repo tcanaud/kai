@@ -2,7 +2,7 @@
 
 ## Binary
 
-`knowledge-system` (via `npx knowledge-system <command>`)
+`knowledge-system` (via `npx @tcanaud/knowledge-system <command>`)
 
 ## Commands
 

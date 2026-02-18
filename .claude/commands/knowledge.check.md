@@ -7,7 +7,7 @@
 Execute:
 
 ```bash
-npx knowledge-system check
+npx @tcanaud/knowledge-system check
 ```
 
 This verifies freshness of all knowledge guides by comparing their `watched_paths` against git history.

@@ -50,15 +50,15 @@
 
 **Goal**: Scaffold `.knowledge/` directory with default config, empty index, architecture.md scaffold, and guides/ directory. Idempotent — safe to re-run.
 
-**Independent Test**: Run `npx knowledge-system init` in a project without `.knowledge/` and verify all structural files are created. Run again and verify existing content is preserved.
+**Independent Test**: Run `npx @tcanaud/knowledge-system init` in a project without `.knowledge/` and verify all structural files are created. Run again and verify existing content is preserved.
 
 ### Implementation for User Story 5
 
 - [x] T007 [US5] Implement initializer in `packages/knowledge-system/src/initializer.js` — export async `install(flags)` that: (1) calls `detect(projectRoot)` to find environment, (2) creates `.knowledge/` directory, (3) writes `config.yaml` from template with detected source paths, (4) writes empty `index.yaml` from template, (5) writes `architecture.md` scaffold from template, (6) creates `guides/` subdirectory, (7) writes initial empty `snapshot.md`, (8) copies Claude Code command templates to `.claude/commands/`. Must be idempotent: skip existing files. Support `--yes` flag to skip confirmation. Follow 3-phase pattern from `packages/feature-lifecycle/src/initializer.js`
 - [x] T008 [US5] Implement updater in `packages/knowledge-system/src/updater.js` — export `update(flags)` that: (1) verifies `.knowledge/` exists (exit 1 if not), (2) copies latest command templates to `.claude/commands/` overwriting old versions, (3) updates BMAD integration if `_bmad`/`.bmad` detected. MUST NOT modify `architecture.md`, `guides/*.md`, `config.yaml`, or `index.yaml`. Follow pattern from `packages/feature-lifecycle/src/updater.js`
-- [x] T009 [US5] Wire `init` and `update` commands in `packages/knowledge-system/bin/cli.js` — import `install` from initializer.js and `update` from updater.js, connect to switch/case router. Verify `npx knowledge-system init` and `npx knowledge-system update` work end-to-end
+- [x] T009 [US5] Wire `init` and `update` commands in `packages/knowledge-system/bin/cli.js` — import `install` from initializer.js and `update` from updater.js, connect to switch/case router. Verify `npx @tcanaud/knowledge-system init` and `npx @tcanaud/knowledge-system update` work end-to-end
 
-**Checkpoint**: `npx knowledge-system init` scaffolds `.knowledge/` directory. `npx knowledge-system update` refreshes commands.
+**Checkpoint**: `npx @tcanaud/knowledge-system init` scaffolds `.knowledge/` directory. `npx @tcanaud/knowledge-system update` refreshes commands.
 
 ---
 
@@ -66,7 +66,7 @@
 
 **Goal**: Regenerate `snapshot.md` and rebuild `index.yaml` from current project artifacts (conventions, ADRs, features, guides)
 
-**Independent Test**: Run `npx knowledge-system refresh` in a project with ADRs, conventions, and features. Verify `snapshot.md` contains aggregated data and `index.yaml` maps concepts to artifacts.
+**Independent Test**: Run `npx @tcanaud/knowledge-system refresh` in a project with ADRs, conventions, and features. Verify `snapshot.md` contains aggregated data and `index.yaml` maps concepts to artifacts.
 
 ### Implementation for User Story 2
 
@@ -76,9 +76,9 @@
 - [x] T013 [P] [US2] Implement guides scanner in `packages/knowledge-system/src/scanners/guides.js` — export `scanGuides(projectRoot, config)` that reads `.knowledge/guides/*.md`, parses YAML frontmatter using `frontmatter.js`, returns array of `{ id, title, path, summary, topics, status, last_verified, watched_paths, references }`. Status determined by freshness (uses git log, see checker.js — initially set to "unknown" until checker is available)
 - [x] T014 [US2] Create scanner index in `packages/knowledge-system/src/scanners/index.js` — export all four scanners and `scanAll(projectRoot, config)` that calls all scanners and returns `{ guides, conventions, adrs, features }`
 - [x] T015 [US2] Implement refresher in `packages/knowledge-system/src/refresher.js` — export async `refresh()` that: (1) reads config via `config.js`, (2) calls `scanAll()` to get all artifacts, (3) builds index.yaml with version, generated timestamp, and all scanned entries, (4) builds snapshot.md with markdown tables for conventions, ADRs, features, and tech stack section. Write both files to `.knowledge/`. Follow snapshot template from plan.md D4
-- [x] T016 [US2] Wire `refresh` command in `packages/knowledge-system/bin/cli.js` — import `refresh` from refresher.js, add to switch/case. Verify `npx knowledge-system refresh` regenerates snapshot and index
+- [x] T016 [US2] Wire `refresh` command in `packages/knowledge-system/bin/cli.js` — import `refresh` from refresher.js, add to switch/case. Verify `npx @tcanaud/knowledge-system refresh` regenerates snapshot and index
 
-**Checkpoint**: `npx knowledge-system refresh` produces accurate `snapshot.md` and `index.yaml` from existing artifacts.
+**Checkpoint**: `npx @tcanaud/knowledge-system refresh` produces accurate `snapshot.md` and `index.yaml` from existing artifacts.
 
 ---
 
@@ -91,7 +91,7 @@
 ### Implementation for User Story 1
 
 - [x] T017 [US1] Create `/k` Claude Code command template in `packages/knowledge-system/templates/commands/k.md` — prompt template that instructs Claude to: (1) check `.knowledge/` exists, (2) read `.knowledge/index.yaml`, (3) match user question against entry titles/summaries/topics, (4) read the most relevant sources (guides first, then conventions/ADRs), (5) for each guide source: check freshness by reading frontmatter last_verified and running `git log -1 --format=%aI` on watched_paths, (6) assemble answer with source citations each tagged VERIFIED or STALE, (7) if no relevant sources found: suggest `/knowledge.create`. Include handoffs to `/knowledge.create` and `/knowledge.refresh`
-- [x] T018 [US1] Create `/knowledge.refresh` Claude Code command template in `packages/knowledge-system/templates/commands/knowledge.refresh.md` — prompt template that instructs Claude to run `npx knowledge-system refresh` and report results. Include handoff to `/knowledge.check`
+- [x] T018 [US1] Create `/knowledge.refresh` Claude Code command template in `packages/knowledge-system/templates/commands/knowledge.refresh.md` — prompt template that instructs Claude to run `npx @tcanaud/knowledge-system refresh` and report results. Include handoff to `/knowledge.check`
 
 **Checkpoint**: `/k` returns assembled, verified answers from the knowledge base.
 
@@ -99,18 +99,18 @@
 
 ## Phase 6: User Story 3 — Check Knowledge Freshness (Priority: P2)
 
-**Goal**: `npx knowledge-system check` verifies all guides' freshness by comparing watched_paths against git history. Reports VERIFIED/STALE/UNKNOWN per guide.
+**Goal**: `npx @tcanaud/knowledge-system check` verifies all guides' freshness by comparing watched_paths against git history. Reports VERIFIED/STALE/UNKNOWN per guide.
 
 **Independent Test**: Create a guide with watched_paths, modify one of the watched files, run check, verify the guide is reported STALE.
 
 ### Implementation for User Story 3
 
 - [x] T019 [US3] Implement checker in `packages/knowledge-system/src/checker.js` — export async `check()` that: (1) reads all guides via guides scanner, (2) for each guide with watched_paths: run `git log -1 --format=%aI -- <path>` via `execSync` for each path, compare against last_verified date, classify as VERIFIED/STALE/UNKNOWN, (3) for each guide with references: check if referenced conventions/ADRs still exist and aren't superseded, (4) output formatted report to stdout per contracts/cli.md check output format, (5) exit code 0 if all verified/unknown, exit code 1 if any stale. Follow freshness algorithm from plan.md D3
-- [x] T020 [US3] Wire `check` command in `packages/knowledge-system/bin/cli.js` — import `check` from checker.js, add to switch/case. Verify `npx knowledge-system check` outputs freshness report
+- [x] T020 [US3] Wire `check` command in `packages/knowledge-system/bin/cli.js` — import `check` from checker.js, add to switch/case. Verify `npx @tcanaud/knowledge-system check` outputs freshness report
 - [x] T021 [US3] Update guides scanner in `packages/knowledge-system/src/scanners/guides.js` to use checker's freshness logic — import freshness checking from checker.js so that `scanGuides` can set accurate status (verified/stale/unknown) during refresh, making index.yaml status fields accurate
-- [x] T022 [US3] Create `/knowledge.check` Claude Code command template in `packages/knowledge-system/templates/commands/knowledge.check.md` — prompt template that instructs Claude to run `npx knowledge-system check`, interpret the output, and suggest actions for stale guides (update guide content, re-verify watched_paths). Include handoffs to `/knowledge.refresh` and `/knowledge.create`
+- [x] T022 [US3] Create `/knowledge.check` Claude Code command template in `packages/knowledge-system/templates/commands/knowledge.check.md` — prompt template that instructs Claude to run `npx @tcanaud/knowledge-system check`, interpret the output, and suggest actions for stale guides (update guide content, re-verify watched_paths). Include handoffs to `/knowledge.refresh` and `/knowledge.create`
 
-**Checkpoint**: `npx knowledge-system check` detects stale guides with zero false negatives.
+**Checkpoint**: `npx @tcanaud/knowledge-system check` detects stale guides with zero false negatives.
 
 ---
 
@@ -146,8 +146,8 @@
 
 **Purpose**: Integration with tcsetup and final validation
 
-- [x] T025 Add knowledge-system to tcsetup installer — update `packages/tcsetup/src/installer.js` to add `{ name: "Knowledge System", flag: "--skip-knowledge", cmd: "npx knowledge-system init" }` to the steps array
-- [x] T026 Add knowledge-system to tcsetup updater — update `packages/tcsetup/src/updater.js` to add `{ name: "Knowledge System", marker: ".knowledge", pkg: "knowledge-system", cmd: "npx knowledge-system update" }` to the TOOLS array. Also chain refresh after update: `npx knowledge-system update && npx knowledge-system refresh`
+- [x] T025 Add knowledge-system to tcsetup installer — update `packages/tcsetup/src/installer.js` to add `{ name: "Knowledge System", flag: "--skip-knowledge", cmd: "npx @tcanaud/knowledge-system init" }` to the steps array
+- [x] T026 Add knowledge-system to tcsetup updater — update `packages/tcsetup/src/updater.js` to add `{ name: "Knowledge System", marker: ".knowledge", pkg: "knowledge-system", cmd: "npx @tcanaud/knowledge-system update" }` to the TOOLS array. Also chain refresh after update: `npx @tcanaud/knowledge-system update && npx @tcanaud/knowledge-system refresh`
 - [x] T027 Update tcsetup help text — update `packages/tcsetup/bin/cli.js` help text to include `--skip-knowledge` flag description
 - [x] T028 Run quickstart.md end-to-end validation — follow all steps in `specs/007-knowledge-system/quickstart.md`, verify init creates correct structure, refresh populates snapshot and index, check reports freshness, `/k` returns verified answers
 
@@ -215,8 +215,8 @@ Task: "Wire refresh command in bin/cli.js"                              # T016
 
 1. Complete Phase 1: Setup (package skeleton)
 2. Complete Phase 2: Foundational (shared utilities)
-3. Complete Phase 3: US5 — Init (`npx knowledge-system init` works)
-4. Complete Phase 4: US2 — Refresh (`npx knowledge-system refresh` generates snapshot + index)
+3. Complete Phase 3: US5 — Init (`npx @tcanaud/knowledge-system init` works)
+4. Complete Phase 4: US2 — Refresh (`npx @tcanaud/knowledge-system refresh` generates snapshot + index)
 5. Complete Phase 5: US1 — Query (`/k` assembles verified answers)
 6. **STOP and VALIDATE**: The core value proposition is functional
 

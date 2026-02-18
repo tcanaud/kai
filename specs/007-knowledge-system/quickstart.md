@@ -10,10 +10,10 @@
 npm install ./packages/knowledge-system
 
 # Initialize the knowledge directory
-npx knowledge-system init
+npx @tcanaud/knowledge-system init
 
 # Generate initial snapshot and index from existing artifacts
-npx knowledge-system refresh
+npx @tcanaud/knowledge-system refresh
 ```
 
 ## Directory Created
@@ -65,11 +65,11 @@ Reports which guides are VERIFIED and which are STALE.
 
 | Command | Description |
 |---------|-------------|
-| `npx knowledge-system init` | Scaffold `.knowledge/` directory |
-| `npx knowledge-system update` | Refresh command templates |
-| `npx knowledge-system refresh` | Regenerate snapshot + index |
-| `npx knowledge-system check` | Verify guide freshness |
-| `npx knowledge-system help` | Show help |
+| `npx @tcanaud/knowledge-system init` | Scaffold `.knowledge/` directory |
+| `npx @tcanaud/knowledge-system update` | Refresh command templates |
+| `npx @tcanaud/knowledge-system refresh` | Regenerate snapshot + index |
+| `npx @tcanaud/knowledge-system check` | Verify guide freshness |
+| `npx @tcanaud/knowledge-system help` | Show help |
 
 ## Claude Code Commands
 
