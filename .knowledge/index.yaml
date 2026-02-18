@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-18T09:32:08.191Z"
+generated: "2026-02-18T10:33:39.710Z"
 
 guides:
   - id: commit-and-push
@@ -13,6 +13,12 @@ guides:
     path: .knowledge/guides/create-new-package.md
     summary: "Every kai package follows an identical structure: independent git repo, git submodule in `packages/`, ESM-only with z..."
     topics: [package, new package, scaffold, submodule, npm publish, tcsetup, ci/cd, trusted publishing]
+    status: verified
+  - id: project-philosophy
+    title: "kai philosophy — vision, dogmas, and design principles"
+    path: .knowledge/guides/project-philosophy.md
+    summary: "kai is a project governance system that lives entirely inside the repository. No external service, no database, no da..."
+    topics: [philosophy, vision, dogma, principles, architecture, agreements, drift, portability, governance]
     status: verified
 
 conventions:
@@ -115,3 +121,8 @@ features:
     path: .features/007-knowledge-system.yaml
     stage: test
     topics: [knowledge, system]
+  - id: 008-product-manager
+    title: "Product Manager"
+    path: .features/008-product-manager.yaml
+    stage: ideation
+    topics: [product, manager]
