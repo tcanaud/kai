@@ -1,0 +1,115 @@
+# Mermaid Workbench — Module Configuration
+# Module BMAD pour la generation de diagrammes Mermaid multi-couches
+
+module:
+  name: mermaid-workbench
+  version: "1.0.0"
+  description: Generation, organisation et navigation de diagrammes Mermaid multi-couches
+
+# ── Supported Diagram Types ──────────────────────────────
+supported_types:
+  - flowchart
+  - state
+  - architecture
+  - sequence
+
+# ── Supported Layers ─────────────────────────────────────
+supported_layers:
+  - L0   # Macro — vue systeme globale
+  - L1   # Process — flux et composants
+  - L2   # Detail — etats, validations, sous-processus
+
+# ── Output Configuration ─────────────────────────────────
+output_path: .bmad_output/mermaid/
+naming_convention: "L{n}-{id}.mmd"
+
+# ══════════════════════════════════════════════════════════
+# REFERENCE SCHEMAS
+# ══════════════════════════════════════════════════════════
+
+# ── T004: .mmd Frontmatter YAML Schema ───────────────────
+# Each .mmd file starts with YAML frontmatter between --- delimiters,
+# followed by a blank line, then pure Mermaid syntax.
+# Reference: research.md R1
+#
+# Schema:
+#   id:        string   (required) — Unique diagram identifier within feature (kebab-case)
+#   title:     string   (required) — Human-readable diagram title
+#   type:      enum     (required) — One of: flowchart, state, architecture, sequence
+#   layer:     enum     (required) — One of: L0, L1, L2
+#   parent:    string   (L1/L2 only) — Reference: <diagram-id>#<node-id>
+#   children:  string[] (optional) — List of child diagram-ids
+#   feature:   string   (required) — Feature identifier (xxx-feature-name)
+#
+# Validation Rules:
+#   - id must be unique per feature
+#   - parent is REQUIRED for L1 and L2, FORBIDDEN for L0
+#   - type must be one of supported_types
+#   - children is auto-updated when a child diagram is created
+#   - layer must be one of supported_layers
+#
+# Example:
+#   ---
+#   id: auth-flow
+#   title: Authentication Flow
+#   type: flowchart
+#   layer: L1
+#   parent: system-architecture#auth-service
+#   children:
+#     - token-validation
+#     - session-management
+#   feature: 001-auth-mfa
+#   ---
+#
+#   flowchart TD
+#     A[Request] --> B{Has Token?}
+#     ...
+
+# ── T005: _index.yaml Manifest Schema ────────────────────
+# One _index.yaml per feature directory. Source of truth for diagram relationships.
+# Flat structure organized by layer for fast tree reading without recursion.
+# Reference: research.md R2
+#
+# Schema:
+#   feature:   string  (required) — Feature identifier
+#   created:   date    (required) — Creation date (YYYY-MM-DD)
+#   updated:   date    (required) — Last modification date (YYYY-MM-DD)
+#   diagrams:  object  (required) — Diagrams organized by layer
+#     L0:      list    — Layer 0 entries
+#     L1:      list    — Layer 1 entries
+#     L2:      list    — Layer 2 entries
+#
+# Diagram Entry Schema (per item in each layer):
+#   id:          string (required) — Diagram identifier
+#   file:        string (required) — Filename (L{n}-{id}.mmd)
+#   type:        enum   (required) — Diagram type
+#   title:       string (required) — Human-readable title
+#   drills_from: string (L1/L2 only) — Reference: <parent-id>#<node-id>
+#
+# Validation Rules:
+#   - Each id must correspond to an existing .mmd file
+#   - Each drills_from must reference a diagram in a higher layer
+#   - updated is refreshed on every modification
+#
+# Example:
+#   feature: 001-auth-mfa
+#   created: 2026-02-17
+#   updated: 2026-02-17
+#   diagrams:
+#     L0:
+#       - id: system-architecture
+#         file: L0-system-architecture.mmd
+#         type: architecture
+#         title: System Architecture
+#     L1:
+#       - id: auth-flow
+#         file: L1-auth-flow.mmd
+#         type: flowchart
+#         title: Authentication Flow
+#         drills_from: system-architecture#auth-service
+#     L2:
+#       - id: token-validation
+#         file: L2-token-validation.mmd
+#         type: flowchart
+#         title: Token Validation
+#         drills_from: auth-flow#validate-token
