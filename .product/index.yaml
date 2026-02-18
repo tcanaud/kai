@@ -1,31 +1,43 @@
 product_version: "1.0"
-updated: "2026-02-18T13:51:07.729Z"
+updated: "2026-02-18"
 
 feedbacks:
-  total: 0
+  total: 1
   by_status:
     new: 0
-    triaged: 0
+    triaged: 1
     excluded: 0
     resolved: 0
   by_category:
     critical-bug: 0
     bug: 0
     optimization: 0
-    evolution: 0
+    evolution: 1
     new-feature: 0
-  items: []
+  items:
+    - id: "FB-001"
+      title: "Add shared input validation utility across all packages"
+      status: "triaged"
+      category: "evolution"
+      priority: "medium"
+      created: "2026-02-18"
 
 backlogs:
-  total: 0
+  total: 1
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 0
+    promoted: 1
     cancelled: 0
-  items: []
+  items:
+    - id: "BL-001"
+      title: "Shared input validation across all kai packages"
+      status: "promoted"
+      category: "evolution"
+      priority: "medium"
+      created: "2026-02-18"
 
 metrics:
-  feedback_to_backlog_rate: 0.0
-  backlog_to_feature_rate: 0.0
+  feedback_to_backlog_rate: 1.0
+  backlog_to_feature_rate: 1.0
