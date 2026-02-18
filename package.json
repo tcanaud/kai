@@ -3,5 +3,11 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "adr-system": "^1.0.2",
+    "agreement-system": "^1.0.3",
+    "feature-lifecycle": "^1.0.3",
+    "mermaid-workbench": "^1.0.3"
+  }
 }

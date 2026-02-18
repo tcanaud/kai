@@ -1,0 +1,74 @@
+{
+  "feature_version": "1.0",
+  "feature_id": "006-tcsetup-update",
+  "title": "Tcsetup Update",
+  "status": "active",
+  "owner": "tcanaud",
+  "created": "2026-02-18",
+  "updated": "2026-02-18",
+  "workflow_path": "quick",
+  "depends_on": [],
+  "tags": [],
+  "lifecycle": {
+    "stage": "test",
+    "stage_since": "2026-02-18",
+    "progress": 1.0,
+    "manual_override": null
+  },
+  "artifacts": {
+    "bmad": {
+      "prd": false,
+      "architecture": false,
+      "epics": false
+    },
+    "speckit": {
+      "spec": true,
+      "plan": true,
+      "research": true,
+      "tasks": true,
+      "contracts": false,
+      "tasks_done": 6,
+      "tasks_total": 6
+    },
+    "agreement": {
+      "exists": true,
+      "status": "draft",
+      "check": "MISSING"
+    },
+    "adr": {
+      "count": 0,
+      "ids": []
+    },
+    "mermaid": {
+      "count": 0,
+      "layers": {
+        "L0": 0,
+        "L1": 0,
+        "L2": 0
+      }
+    }
+  },
+  "health": {
+    "overall": "WARNING",
+    "agreement": "MISSING",
+    "spec_completeness": 0.8,
+    "task_progress": 1.0,
+    "adr_coverage": 0,
+    "diagram_coverage": 0,
+    "warnings": [
+      "Agreement check not run — run /agreement.check 006-tcsetup-update",
+      "No ADRs reference this feature — consider /adr.create if decisions were made"
+    ]
+  },
+  "last_scan": {
+    "timestamp": "2026-02-18T04:50:00Z",
+    "stage": "test",
+    "artifacts_snapshot": {
+      "bmad_prd": false,
+      "speckit_spec": true,
+      "speckit_plan": true,
+      "speckit_tasks": true,
+      "agreement_exists": true
+    }
+  }
+}

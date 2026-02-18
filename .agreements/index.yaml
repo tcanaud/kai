@@ -32,3 +32,10 @@ agreements:
     title: "Convention: Trusted npm Publishing via GitHub Actions"
     status: "active"
     path: "conv-006-trusted-publishing/agreement.yaml"
+
+  - feature_id: "006-tcsetup-update"
+    title: "tcsetup update command"
+    status: "draft"
+    path: "006-tcsetup-update/agreement.yaml"
+    created: "2026-02-18"
+    updated: "2026-02-18"

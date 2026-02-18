@@ -25,3 +25,7 @@ features:
     title: "TC Setup (Bootstrapper)"
     status: "active"
     stage: "release"
+  - id: "006-tcsetup-update"
+    title: "Tcsetup Update"
+    status: "active"
+    stage: "test"

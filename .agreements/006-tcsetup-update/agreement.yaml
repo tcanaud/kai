@@ -1,0 +1,84 @@
+# Agreement: tcsetup update command
+# Convention: one file per feature, one feature = one agreement = one promise
+
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "006-tcsetup-update"
+title: "tcsetup update command"
+status: "draft"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Already-onboarded projects have no single command to update their TC stack tools.
+  Users must manually update each package and re-run individual tool commands.
+  This feature adds `npx tcsetup update` — one command that detects installed tools,
+  updates their npm packages, refreshes commands/templates, and preserves user data.
+
+user_outcomes:
+  - "Update all installed TC tools with a single command instead of 4+ separate steps"
+  - "Only installed tools are updated — absent tools cause no errors"
+  - "Existing user data (ADRs, agreements, features, configs) is never modified"
+
+acceptance_criteria:
+  - criterion: "Running `npx tcsetup update` in a fully onboarded project updates all 4 packages and refreshes all commands/templates"
+    verifiable: true
+  - criterion: "Running `npx tcsetup update` in a partial installation updates only tools whose marker directories exist"
+    verifiable: true
+  - criterion: "Running `npx tcsetup` with no subcommand still performs the full init sequence (backward compatibility)"
+    verifiable: true
+  - criterion: "A sub-tool update failure is logged and does not block remaining tools from updating"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces:
+  - type: "cli"
+    path: "npx tcsetup update"
+    contract: "Detects installed tools, updates npm packages, calls sub-tool updates, refreshes tcsetup commands"
+  - type: "cli"
+    path: "npx tcsetup init"
+    contract: "Explicit init subcommand — identical to existing npx tcsetup behavior"
+  - type: "cli"
+    path: "npx tcsetup help"
+    contract: "Lists all available subcommands with descriptions"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Zero runtime dependencies — Node.js built-ins only (conv-001)"
+  - type: "compatibility"
+    description: "Safe update only — refresh generated/template files, never touch user data"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad:
+    - ".bmad_output/planning-artifacts/006-tcsetup-update/quick-spec.md"
+  speckit:
+    - "specs/006-tcsetup-update/spec.md"
+    - "specs/006-tcsetup-update/plan.md"
+    - "specs/006-tcsetup-update/tasks.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-git-submodule-monorepo.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad:
+    - ".bmad_output/planning-artifacts/006-tcsetup-update/"
+  speckit:
+    - "specs/006-tcsetup-update/"
+  code:
+    - "packages/tcsetup/bin/cli.js"
+    - "packages/tcsetup/src/"
+    - "packages/tcsetup/package.json"
+
+checksums: {}
