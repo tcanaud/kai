@@ -1,8 +1,13 @@
 version: "1.0"
-generated: "2026-02-18T05:01:49.891Z"
+generated: "2026-02-18T05:34:28.792Z"
 
 guides:
-  []
+  - id: create-new-package
+    title: "How to create a new kai package"
+    path: .knowledge/guides/create-new-package.md
+    summary: "Every kai package follows an identical structure: independent git repo, git submodule in `packages/`, ESM-only with z..."
+    topics: [package, new package, scaffold, submodule, npm publish, tcsetup, ci/cd, trusted publishing]
+    status: verified
 
 conventions:
   - id: conv-001-esm-zero-deps
