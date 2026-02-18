@@ -1,6 +1,6 @@
 feature: global
 created: 2026-02-18
-updated: 2026-02-18
+updated: 2026-02-18  # added knowledge-system + product-manager
 diagrams:
   L0:
     - id: system-context

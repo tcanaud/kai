@@ -12,6 +12,7 @@ agreements:
     title: "Convention: Uniform CLI Entry Point Structure"
     status: "active"
     path: "conv-002-cli-entry-structure/agreement.yaml"
+    synced: "2026-02-18"
 
   - feature_id: "conv-003-file-based-artifacts"
     title: "Convention: File-Based Artifact Model"
@@ -27,6 +28,7 @@ agreements:
     title: "Convention: Claude Code Slash Command Integration"
     status: "active"
     path: "conv-005-claude-commands/agreement.yaml"
+    synced: "2026-02-18"
 
   - feature_id: "conv-006-trusted-publishing"
     title: "Convention: Trusted npm Publishing via GitHub Actions"

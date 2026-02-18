@@ -79,12 +79,41 @@ flowchart TD
     api -.->|"WebSocket"| app
   end
 
+  subgraph "007 — knowledge-system"
+    direction TB
+    ks_cli([knowledge-system CLI])
+    ks_init[initializer.js]
+    ks_update[updater.js]
+    ks_refresh[refresher.js]
+    ks_check[checker.js]
+    ks_detect[detect.js]
+    ks_cli --> ks_init
+    ks_cli --> ks_update
+    ks_cli --> ks_refresh
+    ks_cli --> ks_check
+    ks_init --> ks_detect
+  end
+
+  subgraph "008 — product-manager"
+    direction TB
+    pm_cli([product-manager CLI])
+    pm_install[installer.js]
+    pm_update[updater.js]
+    pm_detect[detect.js]
+    pm_cli --> pm_install
+    pm_cli --> pm_update
+    pm_install --> pm_detect
+  end
+
   subgraph "File-based Artifact Store"
     direction TB
     adr_store[(.adr/ — ADR records)]
     agr_store[(.agreements/ — Agreements)]
     feat_store[(.features/ — Feature index)]
+    know_store[(.knowledge/ — Verified docs)]
+    prod_store[(.product/ — Feedback pipeline)]
     diag_store[(.bmad_output/mermaid/ — Diagrams)]
+    spec_store[(specs/ — Specifications)]
     cmd_store[(.claude/commands/ — Slash commands)]
   end
 
@@ -106,3 +135,11 @@ flowchart TD
   mw_launcher --> vite_server
   parser -->|"reads .mmd"| diag_store
   watcher -->|"watches"| diag_store
+
+  ks_init -->|"scaffolds"| know_store
+  ks_init -->|"installs"| cmd_store
+  ks_refresh -->|"scans & writes"| know_store
+  ks_check -->|"reads"| know_store
+
+  pm_install -->|"scaffolds"| prod_store
+  pm_install -->|"installs"| cmd_store

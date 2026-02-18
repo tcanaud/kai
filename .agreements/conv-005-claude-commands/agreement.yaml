@@ -6,25 +6,28 @@ title: "Convention: Claude Code Slash Command Integration"
 status: "active"
 created: "2026-02-18"
 updated: "2026-02-18"
+synced: "2026-02-18"
 owner: "Thibaud Canaud"
 
 # ── Product Intent ────────────────────────────────────
 intent: |
-  Every package installs AI-friendly prompt templates into .claude/commands/
-  during its init step. These Markdown files serve as Claude Code slash
-  commands (e.g., /adr.create, /agreement.check, /feature.status) that encode
-  structured workflows for AI-assisted development. The commands are the
-  primary user interface for the toolchain — the CLI init/update are
-  scaffolding utilities, while the slash commands are the day-to-day tools.
+  Packages that provide user-facing workflows install AI-friendly prompt
+  templates into .claude/commands/ during their init step. These Markdown
+  files serve as Claude Code slash commands (e.g., /adr.create,
+  /agreement.check, /product.intake) that encode structured workflows for
+  AI-assisted development. BMAD-internal modules (like mermaid-workbench)
+  that operate exclusively through the BMAD agent system are exempt — they
+  install BMAD tasks instead of Claude commands. The slash commands are the
+  primary user interface for the toolchain.
 
 user_outcomes:
   - "Developers interact with the toolchain through natural-language slash commands in Claude Code"
   - "Each package extends the Claude Code command palette with domain-specific workflows"
 
 acceptance_criteria:
-  - criterion: "Each package's installer.js copies Markdown templates into .claude/commands/"
+  - criterion: "Each package's installer module copies Markdown templates into .claude/commands/ (BMAD-internal modules that provide no user-facing slash commands are exempt)"
     verifiable: true
-  - criterion: "Command files are named <domain>.<action>.md (e.g., adr.create.md, feature.list.md)"
+  - criterion: "Command files follow <domain>.<action>.md naming (e.g., adr.create.md, feature.list.md). A package MAY additionally provide a shorthand alias (e.g., k.md) for frequently-used commands."
     verifiable: true
   - criterion: "The update command refreshes command files without touching user artifacts"
     verifiable: true
@@ -51,7 +54,10 @@ references:
     - "packages/adr-system/templates/commands/"
     - "packages/agreement-system/templates/commands/"
     - "packages/feature-lifecycle/templates/commands/"
+    - "packages/knowledge-system/templates/commands/"
     - "packages/mermaid-workbench/templates/bmad/modules/mermaid-workbench/tasks/"
+    - "packages/product-manager/templates/commands/"
+    - "packages/tcsetup/commands/"
   adr:
     - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
 
@@ -72,3 +78,6 @@ applies_to_features:
   - "003-feature-lifecycle"
   - "004-mermaid-workbench"
   - "005-tcsetup"
+  - "006-tcsetup-update"
+  - "007-knowledge-system"
+  - "008-product-manager"

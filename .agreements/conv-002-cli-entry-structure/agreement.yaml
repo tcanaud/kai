@@ -6,16 +6,20 @@ title: "Convention: Uniform CLI Entry Point Structure"
 status: "active"
 created: "2026-02-18"
 updated: "2026-02-18"
+synced: "2026-02-18"
 owner: "Thibaud Canaud"
 
 # ── Product Intent ────────────────────────────────────
 intent: |
-  Every package follows an identical CLI skeleton: bin/cli.js is the entry
+  Every package follows a uniform CLI skeleton: bin/cli.js is the entry
   point (registered in package.json "bin"), it parses argv via node:process,
-  and dispatches to exactly three commands: init (calls src/installer.js),
-  update (calls src/updater.js), and help. This pattern makes each package
-  instantly learnable once you have seen one, and keeps the npx interface
-  predictable across the entire toolchain.
+  and dispatches commands through a switch statement. The base commands are
+  init, update, and help. Packages MAY add domain-specific commands (e.g.,
+  refresh, check, viewer) but MUST always support init and help. The init
+  command delegates to an installer module in src/ (conventionally
+  src/installer.js). The update command delegates to src/updater.js when
+  the package supports updating. This pattern makes each package instantly
+  learnable and keeps the npx interface predictable across the toolchain.
 
 user_outcomes:
   - "Users can run any package with the same npx <pkg> init | update | help interface"
@@ -24,9 +28,9 @@ user_outcomes:
 acceptance_criteria:
   - criterion: "Every package has a bin/cli.js registered in package.json \"bin\""
     verifiable: true
-  - criterion: "bin/cli.js imports and dispatches to src/installer.js (init) and src/updater.js (update)"
+  - criterion: "bin/cli.js dispatches init to an installer module in src/ (conventionally src/installer.js) and update to src/updater.js when the package supports updating"
     verifiable: true
-  - criterion: "The switch statement handles init, update, help/--help/-h, and a default error case"
+  - criterion: "The switch statement handles at minimum init, help/--help/-h, and a default error case. Packages with mutable state MUST also support update."
     verifiable: true
   - criterion: "argv parsing uses node:process.argv without external argument-parsing libraries"
     verifiable: true
@@ -34,8 +38,8 @@ acceptance_criteria:
 # ── Interfaces ────────────────────────────────────────
 interfaces:
   - type: "cli"
-    path: "npx <package> init | update | help"
-    contract: "All packages expose init, update, and help subcommands via identical switch dispatch"
+    path: "npx <package> init | update | help [+ domain commands]"
+    contract: "All packages expose init and help subcommands via switch dispatch. update is required for packages with mutable state. Domain-specific commands (refresh, check, viewer) are permitted."
 
 # ── Non-Functional Constraints ────────────────────────
 constraints: []
@@ -53,7 +57,10 @@ references:
     - "packages/adr-system/bin/cli.js"
     - "packages/agreement-system/bin/cli.js"
     - "packages/feature-lifecycle/bin/cli.js"
+    - "packages/knowledge-system/bin/cli.js"
     - "packages/mermaid-workbench/bin/cli.js"
+    - "packages/product-manager/bin/cli.js"
+    - "packages/tcsetup/bin/cli.js"
   adr: []
 
 # ── Drift Detection ──────────────────────────────────
@@ -63,6 +70,7 @@ watched_paths:
   code:
     - "packages/*/bin/cli.js"
     - "packages/*/src/installer.js"
+    - "packages/*/src/initializer.js"
     - "packages/*/src/updater.js"
 
 checksums: {}
@@ -74,3 +82,6 @@ applies_to_features:
   - "003-feature-lifecycle"
   - "004-mermaid-workbench"
   - "005-tcsetup"
+  - "006-tcsetup-update"
+  - "007-knowledge-system"
+  - "008-product-manager"

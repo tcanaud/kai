@@ -22,6 +22,8 @@ flowchart TD
     agreement[agreement-system — Agreement Layer]
     feature[feature-lifecycle — Lifecycle Tracker]
     mermaid[mermaid-workbench — Diagram Viewer]
+    knowledge[knowledge-system — Verified Docs]
+    product[product-manager — Feedback Pipeline]
   end
 
   subgraph "Project Artifacts (git-versioned files)"
@@ -29,7 +31,10 @@ flowchart TD
     adr_files[(.adr/)]
     agr_files[(.agreements/)]
     feat_files[(.features/)]
+    know_files[(.knowledge/)]
+    prod_files[(.product/)]
     diag_files[(.bmad_output/mermaid/)]
+    spec_files[(specs/)]
     cmd_files[(.claude/commands/)]
   end
 
@@ -40,12 +45,17 @@ flowchart TD
   claude -->|"reads/writes"| adr_files
   claude -->|"reads/writes"| agr_files
   claude -->|"reads/writes"| feat_files
+  claude -->|"reads/writes"| know_files
+  claude -->|"reads/writes"| prod_files
   claude -->|"reads/writes"| diag_files
+  claude -->|"reads/writes"| spec_files
   claude -->|"invokes"| cmd_files
 
   tcsetup -->|"scaffolds"| adr_files
   tcsetup -->|"scaffolds"| agr_files
   tcsetup -->|"scaffolds"| feat_files
+  tcsetup -->|"scaffolds"| know_files
+  tcsetup -->|"scaffolds"| prod_files
   tcsetup -->|"scaffolds"| cmd_files
 
   adr -->|"manages"| adr_files
@@ -55,6 +65,9 @@ flowchart TD
   feature -->|"scans all"| feat_files
   feature -->|"scans all"| diag_files
   mermaid -->|"manages"| diag_files
+  knowledge -->|"manages"| know_files
+  product -->|"manages"| prod_files
+  product -->|"promotes to"| feat_files
 
   npm -.->|"npx install"| tcsetup
   github -.->|"publish on tag"| npm
