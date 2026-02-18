@@ -16,3 +16,6 @@
 [submodule "packages/knowledge-system"]
 	path = packages/knowledge-system
 	url = https://github.com/tcanaud/knowledge-system.git
+[submodule "packages/product-manager"]
+	path = packages/product-manager
+	url = https://github.com/tcanaud/product-manager.git
