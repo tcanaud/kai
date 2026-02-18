@@ -13,3 +13,6 @@
 [submodule "packages/tcsetup"]
 	path = packages/tcsetup
 	url = https://github.com/tcanaud/tcsetup.git
+[submodule "packages/knowledge-system"]
+	path = packages/knowledge-system
+	url = https://github.com/tcanaud/knowledge-system.git

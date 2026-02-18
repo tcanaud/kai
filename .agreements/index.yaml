@@ -39,3 +39,10 @@ agreements:
     path: "006-tcsetup-update/agreement.yaml"
     created: "2026-02-18"
     updated: "2026-02-18"
+
+  - feature_id: "007-knowledge-system"
+    title: "Verified Knowledge System"
+    status: "draft"
+    path: "007-knowledge-system/agreement.yaml"
+    created: "2026-02-18"
+    updated: "2026-02-18"

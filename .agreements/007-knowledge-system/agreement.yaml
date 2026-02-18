@@ -1,0 +1,96 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "007-knowledge-system"
+title: "Verified Knowledge System"
+status: "draft"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Provide AI agents and developers with a queryable, self-verifying knowledge base
+  for project onboarding. Every answer is tagged VERIFIED or STALE based on
+  watched_paths + git log comparison, reusing the Agreement drift-detection pattern
+  to ensure documentation never silently goes out of date.
+
+user_outcomes:
+  - "Ask a question with /k and get a trustworthy, sourced answer with freshness status"
+  - "Run /knowledge.check to detect stale guides before they mislead"
+  - "Capture exploration findings as reusable, verifiable guides"
+
+acceptance_criteria:
+  - criterion: "/k returns assembled answers with source citations each tagged VERIFIED or STALE"
+    verifiable: true
+  - criterion: "npx @tcanaud/knowledge-system refresh scans conventions, ADRs, features, and guides into index.yaml + snapshot.md"
+    verifiable: true
+  - criterion: "npx @tcanaud/knowledge-system check detects stale guides by comparing watched_paths against git history"
+    verifiable: true
+  - criterion: "npx @tcanaud/knowledge-system init scaffolds .knowledge/ idempotently with config, index, architecture, guides/, and Claude commands"
+    verifiable: true
+  - criterion: "/knowledge.create produces properly frontmatted guides that integrate with refresh and check"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces:
+  - type: "cli"
+    path: "npx @tcanaud/knowledge-system init [--yes]"
+    contract: "Scaffold .knowledge/ directory — idempotent, preserves existing content"
+  - type: "cli"
+    path: "npx @tcanaud/knowledge-system update"
+    contract: "Refresh command templates without touching user content"
+  - type: "cli"
+    path: "npx @tcanaud/knowledge-system refresh"
+    contract: "Scan all artifacts, rebuild index.yaml and snapshot.md"
+  - type: "cli"
+    path: "npx @tcanaud/knowledge-system check"
+    contract: "Verify guide freshness — exit 0 if clean, exit 1 if stale"
+  - type: "cli"
+    path: "/k <question>"
+    contract: "Claude command — query knowledge base with verified answers"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Zero runtime dependencies — Node.js built-ins only via node: protocol"
+  - type: "compatibility"
+    description: "Node.js >= 18.0.0, ESM-only (type: module)"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit:
+    - "specs/007-knowledge-system/spec.md"
+    - "specs/007-knowledge-system/plan.md"
+    - "specs/007-knowledge-system/tasks.md"
+    - "specs/007-knowledge-system/contracts/cli.md"
+  code:
+    - "packages/knowledge-system/bin/cli.js"
+    - "packages/knowledge-system/src/"
+    - "packages/knowledge-system/templates/"
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+    - ".adr/global/20260218-git-submodule-monorepo.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit:
+    - "specs/007-knowledge-system/spec.md"
+    - "specs/007-knowledge-system/contracts/cli.md"
+  code:
+    - "packages/knowledge-system/bin/cli.js"
+    - "packages/knowledge-system/src/initializer.js"
+    - "packages/knowledge-system/src/refresher.js"
+    - "packages/knowledge-system/src/checker.js"
+    - "packages/knowledge-system/templates/commands/"
+
+checksums: {}
