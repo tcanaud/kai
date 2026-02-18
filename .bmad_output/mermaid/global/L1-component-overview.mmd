@@ -1,0 +1,108 @@
+---
+id: component-overview
+title: "Kai Toolchain — Component Overview"
+type: architecture
+layer: L1
+parent: system-context#tcsetup
+children:
+  - artifact-scan-flow
+feature: global
+---
+
+flowchart TD
+  subgraph "005 — tcsetup (Bootstrapper)"
+    direction TB
+    tcsetup_cli([tcsetup CLI])
+    tcsetup_init[installer.js — init]
+    tcsetup_update[updater.js — update]
+    tcsetup_cli --> tcsetup_init
+    tcsetup_cli --> tcsetup_update
+  end
+
+  subgraph "001 — adr-system"
+    direction TB
+    adr_cli([adr CLI])
+    adr_detect[detect.js]
+    adr_install[installer.js]
+    adr_update[updater.js]
+    adr_cli --> adr_detect
+    adr_cli --> adr_install
+    adr_cli --> adr_update
+  end
+
+  subgraph "002 — agreement-system"
+    direction TB
+    agr_cli([agreement CLI])
+    agr_install[installer.js]
+    agr_update[updater.js]
+    agr_cli --> agr_install
+    agr_cli --> agr_update
+  end
+
+  subgraph "003 — feature-lifecycle"
+    direction TB
+    feat_cli([feature CLI])
+    scanners[scanners/index.js]
+    stage_engine[stage-engine.js]
+    health_engine[health-engine.js]
+    index_mgr[index-manager.js]
+    dashboard[dashboard.js]
+    graph_gen[graph/mermaid-generator.js]
+    feat_cli --> scanners
+    scanners --> stage_engine
+    scanners --> health_engine
+    stage_engine --> index_mgr
+    health_engine --> index_mgr
+    feat_cli --> dashboard
+    feat_cli --> graph_gen
+  end
+
+  subgraph "004 — mermaid-workbench"
+    direction TB
+    mw_cli([mermaid-workbench CLI])
+    mw_install[installer.js]
+    mw_launcher[viewer-launcher.js]
+    mw_cli --> mw_install
+    mw_cli --> mw_launcher
+  end
+
+  subgraph "Mermaid Viewer (Preact + Vite)"
+    direction TB
+    vite_server[Vite Dev Server]
+    parser[server/parser.ts]
+    watcher[server/watcher.ts]
+    api[server/api.ts]
+    app[app.tsx — Preact SPA]
+    vite_server --> parser
+    vite_server --> watcher
+    vite_server --> api
+    api -.->|"WebSocket"| app
+  end
+
+  subgraph "File-based Artifact Store"
+    direction TB
+    adr_store[(.adr/ — ADR records)]
+    agr_store[(.agreements/ — Agreements)]
+    feat_store[(.features/ — Feature index)]
+    diag_store[(.bmad_output/mermaid/ — Diagrams)]
+    cmd_store[(.claude/commands/ — Slash commands)]
+  end
+
+  tcsetup_init -->|"scaffolds all"| adr_store
+  tcsetup_init -->|"scaffolds all"| agr_store
+  tcsetup_init -->|"scaffolds all"| feat_store
+  tcsetup_init -->|"scaffolds all"| cmd_store
+
+  adr_install -->|"writes"| adr_store
+  agr_install -->|"writes"| agr_store
+
+  scanners -->|"reads"| adr_store
+  scanners -->|"reads"| agr_store
+  scanners -->|"reads"| feat_store
+  scanners -->|"reads"| diag_store
+  index_mgr -->|"writes"| feat_store
+
+  mw_install -->|"writes"| diag_store
+  mw_launcher --> vite_server
+  parser -->|"reads .mmd"| diag_store
+  watcher -->|"watches"| diag_store

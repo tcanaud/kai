@@ -1,0 +1,60 @@
+---
+id: system-context
+title: "Kai Toolchain — System Context"
+type: architecture
+layer: L0
+children:
+  - component-overview
+feature: global
+---
+
+flowchart TD
+  subgraph "Developer Environment"
+    direction TB
+    dev[Developer]
+    claude[Claude Code AI Agent]
+  end
+
+  subgraph "Kai Toolchain (npm monorepo)"
+    direction TB
+    tcsetup[tcsetup — Bootstrapper]
+    adr[adr-system — ADR Manager]
+    agreement[agreement-system — Agreement Layer]
+    feature[feature-lifecycle — Lifecycle Tracker]
+    mermaid[mermaid-workbench — Diagram Viewer]
+  end
+
+  subgraph "Project Artifacts (git-versioned files)"
+    direction TB
+    adr_files[(.adr/)]
+    agr_files[(.agreements/)]
+    feat_files[(.features/)]
+    diag_files[(.bmad_output/mermaid/)]
+    cmd_files[(.claude/commands/)]
+  end
+
+  npm[/npm Registry/]
+  github[/GitHub Actions/]
+
+  dev -->|"slash commands"| claude
+  claude -->|"reads/writes"| adr_files
+  claude -->|"reads/writes"| agr_files
+  claude -->|"reads/writes"| feat_files
+  claude -->|"reads/writes"| diag_files
+  claude -->|"invokes"| cmd_files
+
+  tcsetup -->|"scaffolds"| adr_files
+  tcsetup -->|"scaffolds"| agr_files
+  tcsetup -->|"scaffolds"| feat_files
+  tcsetup -->|"scaffolds"| cmd_files
+
+  adr -->|"manages"| adr_files
+  agreement -->|"manages"| agr_files
+  feature -->|"scans all"| adr_files
+  feature -->|"scans all"| agr_files
+  feature -->|"scans all"| feat_files
+  feature -->|"scans all"| diag_files
+  mermaid -->|"manages"| diag_files
+
+  npm -.->|"npx install"| tcsetup
+  github -.->|"publish on tag"| npm

@@ -1,0 +1,76 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "conv-002-cli-entry-structure"
+title: "Convention: Uniform CLI Entry Point Structure"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "Thibaud Canaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Every package follows an identical CLI skeleton: bin/cli.js is the entry
+  point (registered in package.json "bin"), it parses argv via node:process,
+  and dispatches to exactly three commands: init (calls src/installer.js),
+  update (calls src/updater.js), and help. This pattern makes each package
+  instantly learnable once you have seen one, and keeps the npx interface
+  predictable across the entire toolchain.
+
+user_outcomes:
+  - "Users can run any package with the same npx <pkg> init | update | help interface"
+  - "Contributors know exactly where to find and modify CLI logic in any package"
+
+acceptance_criteria:
+  - criterion: "Every package has a bin/cli.js registered in package.json \"bin\""
+    verifiable: true
+  - criterion: "bin/cli.js imports and dispatches to src/installer.js (init) and src/updater.js (update)"
+    verifiable: true
+  - criterion: "The switch statement handles init, update, help/--help/-h, and a default error case"
+    verifiable: true
+  - criterion: "argv parsing uses node:process.argv without external argument-parsing libraries"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces:
+  - type: "cli"
+    path: "npx <package> init | update | help"
+    contract: "All packages expose init, update, and help subcommands via identical switch dispatch"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints: []
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/adr-system/bin/cli.js"
+    - "packages/agreement-system/bin/cli.js"
+    - "packages/feature-lifecycle/bin/cli.js"
+    - "packages/mermaid-workbench/bin/cli.js"
+  adr: []
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/*/bin/cli.js"
+    - "packages/*/src/installer.js"
+    - "packages/*/src/updater.js"
+
+checksums: {}
+
+# ── Feature Coverage ─────────────────────────────────
+applies_to_features:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "003-feature-lifecycle"
+  - "004-mermaid-workbench"
+  - "005-tcsetup"

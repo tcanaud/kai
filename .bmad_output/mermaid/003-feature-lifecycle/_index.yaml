@@ -1,0 +1,12 @@
+feature: 003-feature-lifecycle
+created: 2026-02-18
+updated: 2026-02-18
+diagrams:
+  L0: []
+  L1: []
+  L2:
+    - id: artifact-scan-flow
+      file: L2-artifact-scan-flow.mmd
+      type: flowchart
+      title: "Feature Lifecycle — Artifact Scan and Health Evaluation Flow"
+      drills_from: component-overview#scanners

@@ -1,0 +1,71 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "conv-006-trusted-publishing"
+title: "Convention: Trusted npm Publishing via GitHub Actions"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "Thibaud Canaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Every package publishes to npm via a GitHub Actions workflow triggered by
+  version tags (v*). The workflow uses npm's trusted publishing (OIDC-based
+  provenance with id-token: write permission) instead of long-lived npm
+  tokens. This provides verifiable provenance attestation on every published
+  package, tying each release to a specific git commit and CI run.
+
+user_outcomes:
+  - "Published packages include npm provenance attestation for supply-chain verification"
+  - "No long-lived npm tokens to rotate or risk leaking"
+
+acceptance_criteria:
+  - criterion: "Every submodule has .github/workflows/publish.yml triggered on v* tags"
+    verifiable: true
+  - criterion: "The workflow uses permissions: id-token: write for OIDC-based provenance"
+    verifiable: true
+  - criterion: "npm publish is called with --provenance --access public flags"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces: []
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "security"
+    description: "No long-lived npm tokens; authentication is OIDC-based via GitHub Actions"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/adr-system/.github/workflows/publish.yml"
+    - "packages/agreement-system/.github/workflows/publish.yml"
+    - "packages/feature-lifecycle/.github/workflows/publish.yml"
+    - "packages/mermaid-workbench/.github/workflows/publish.yml"
+    - "packages/tcsetup/.github/workflows/publish.yml"
+  adr: []
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/*/.github/workflows/publish.yml"
+
+checksums: {}
+
+# ── Feature Coverage ─────────────────────────────────
+applies_to_features:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "003-feature-lifecycle"
+  - "004-mermaid-workbench"
+  - "005-tcsetup"

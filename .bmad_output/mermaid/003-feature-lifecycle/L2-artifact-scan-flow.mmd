@@ -1,0 +1,43 @@
+---
+id: artifact-scan-flow
+title: "Feature Lifecycle — Artifact Scan and Health Evaluation Flow"
+type: flowchart
+layer: L2
+parent: component-overview#scanners
+children: []
+feature: 003-feature-lifecycle
+---
+
+flowchart TD
+  start([feature status command])
+
+  start --> load_config[Load .features/config.yaml]
+  load_config --> load_index[Load .features/index.yaml]
+  load_index --> iterate{For each feature}
+
+  iterate --> scan_bmad[scanBmad — check prd, architecture, epics]
+  iterate --> scan_speckit[scanSpeckit — check spec, plan, research, tasks, contracts]
+  iterate --> scan_agreement[scanAgreement — check exists, status, check-result]
+  iterate --> scan_adr[scanAdr — count ADRs, collect IDs]
+  iterate --> scan_mermaid[scanMermaid — count diagrams, list layers]
+
+  scan_bmad --> merge[Merge all scan results]
+  scan_speckit --> merge
+  scan_agreement --> merge
+  scan_adr --> merge
+  scan_mermaid --> merge
+
+  merge --> compute_stage[computeStage — evaluate stage rules]
+  merge --> compute_health[computeHealth — evaluate health rules]
+
+  compute_stage --> stage_result[(stage + progress)]
+  compute_health --> health_result[(health + warnings)]
+
+  stage_result --> update_index[Update .features/index.yaml]
+  health_result --> update_index
+
+  update_index --> output{Output format?}
+  output -->|"--json"| json_out[JSON to stdout]
+  output -->|"default"| dashboard_out[Formatted dashboard]
+
+  iterate -->|"next feature"| iterate

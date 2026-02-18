@@ -1,0 +1,16 @@
+feature: global
+created: 2026-02-18
+updated: 2026-02-18
+diagrams:
+  L0:
+    - id: system-context
+      file: L0-system-context.mmd
+      type: architecture
+      title: "Kai Toolchain — System Context"
+  L1:
+    - id: component-overview
+      file: L1-component-overview.mmd
+      type: architecture
+      title: "Kai Toolchain — Component Overview"
+      drills_from: system-context#tcsetup
+  L2: []

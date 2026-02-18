@@ -1,8 +1,27 @@
 # Feature Lifecycle Index
 # Auto-maintained by /feature.status, /feature.list, and /feature.discover
-# Lists all registered features for global discovery
 
 version: "1.0"
-updated: ""
+updated: "2026-02-18"
 
-features: []
+features:
+  - id: "001-adr-system"
+    title: "Architecture Decision Records"
+    status: "active"
+    stage: "release"
+  - id: "002-agreement-system"
+    title: "Agreement System"
+    status: "active"
+    stage: "release"
+  - id: "003-feature-lifecycle"
+    title: "Feature Lifecycle Tracker"
+    status: "active"
+    stage: "release"
+  - id: "004-mermaid-workbench"
+    title: "Mermaid Workbench"
+    status: "active"
+    stage: "release"
+  - id: "005-tcsetup"
+    title: "TC Setup (Bootstrapper)"
+    status: "active"
+    stage: "release"

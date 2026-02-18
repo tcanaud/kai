@@ -11,9 +11,15 @@ relations:
   supersedes: []
   amends: []
   constrained_by: []
-  related: []
+  related:
+    - "20260218-file-based-artifact-tracking.md"
 references:
-  features: []
+  features:
+    - "001-adr-system"
+    - "002-agreement-system"
+    - "003-feature-lifecycle"
+    - "004-mermaid-workbench"
+    - "005-tcsetup"
   agreements: []
   speckit_research: []
 ---

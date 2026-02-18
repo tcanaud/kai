@@ -1,0 +1,75 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "conv-004-submodule-packages"
+title: "Convention: Git Submodule Package Isolation"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "Thibaud Canaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Each package under packages/ is an independent git repository mounted as a
+  git submodule. The root kai repo uses npm workspaces (packages/* glob) for
+  local development, but each submodule has its own git history, version tags,
+  and GitHub Actions publish workflow. This enables independent versioning,
+  independent CI/CD, and independent npm publishing while still allowing a
+  unified development experience via the workspace.
+
+user_outcomes:
+  - "Each package can be versioned, tagged, and published independently"
+  - "Contributors can clone and work on a single package without the full monorepo"
+  - "The root workspace provides a unified development environment for cross-package work"
+
+acceptance_criteria:
+  - criterion: "Every directory under packages/ is a git submodule with its own .git"
+    verifiable: true
+  - criterion: "The root package.json declares \"workspaces\": [\"packages/*\"]"
+    verifiable: true
+  - criterion: "Each submodule has its own repository.url in package.json pointing to its GitHub repo"
+    verifiable: true
+  - criterion: "Each submodule contains its own .github/workflows/publish.yml"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces: []
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Submodules must be self-contained — no cross-package imports at runtime"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit: []
+  code:
+    - "package.json"
+    - ".gitmodules"
+  adr:
+    - ".adr/global/20260218-git-submodule-monorepo.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit: []
+  code:
+    - "package.json"
+    - ".gitmodules"
+    - "packages/*/package.json"
+
+checksums: {}
+
+# ── Feature Coverage ─────────────────────────────────
+applies_to_features:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "003-feature-lifecycle"
+  - "004-mermaid-workbench"
+  - "005-tcsetup"

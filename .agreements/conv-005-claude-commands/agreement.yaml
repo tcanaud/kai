@@ -1,0 +1,74 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "conv-005-claude-commands"
+title: "Convention: Claude Code Slash Command Integration"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "Thibaud Canaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Every package installs AI-friendly prompt templates into .claude/commands/
+  during its init step. These Markdown files serve as Claude Code slash
+  commands (e.g., /adr.create, /agreement.check, /feature.status) that encode
+  structured workflows for AI-assisted development. The commands are the
+  primary user interface for the toolchain — the CLI init/update are
+  scaffolding utilities, while the slash commands are the day-to-day tools.
+
+user_outcomes:
+  - "Developers interact with the toolchain through natural-language slash commands in Claude Code"
+  - "Each package extends the Claude Code command palette with domain-specific workflows"
+
+acceptance_criteria:
+  - criterion: "Each package's installer.js copies Markdown templates into .claude/commands/"
+    verifiable: true
+  - criterion: "Command files are named <domain>.<action>.md (e.g., adr.create.md, feature.list.md)"
+    verifiable: true
+  - criterion: "The update command refreshes command files without touching user artifacts"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces:
+  - type: "cli"
+    path: ".claude/commands/*.md"
+    contract: "Markdown prompt templates invokable as Claude Code slash commands"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints: []
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/adr-system/templates/commands/"
+    - "packages/agreement-system/templates/commands/"
+    - "packages/feature-lifecycle/templates/commands/"
+    - "packages/mermaid-workbench/templates/bmad/modules/mermaid-workbench/tasks/"
+  adr:
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/*/templates/commands/*.md"
+    - ".claude/commands/*.md"
+
+checksums: {}
+
+# ── Feature Coverage ─────────────────────────────────
+applies_to_features:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "003-feature-lifecycle"
+  - "004-mermaid-workbench"
+  - "005-tcsetup"

@@ -3,9 +3,32 @@
 # Lists all active agreements for global discovery
 
 agreements:
-  - feature_id: "001-bookstore-crud-api"
-    title: "BookStore CRUD API"
-    status: "draft"
-    path: ".agreements/001-bookstore-crud-api/agreement.yaml"
-    created: "2026-02-16"
-    updated: "2026-02-16"
+  - feature_id: "conv-001-esm-zero-deps"
+    title: "Convention: ESM-Only Modules with Zero Runtime Dependencies"
+    status: "active"
+    path: "conv-001-esm-zero-deps/agreement.yaml"
+
+  - feature_id: "conv-002-cli-entry-structure"
+    title: "Convention: Uniform CLI Entry Point Structure"
+    status: "active"
+    path: "conv-002-cli-entry-structure/agreement.yaml"
+
+  - feature_id: "conv-003-file-based-artifacts"
+    title: "Convention: File-Based Artifact Model"
+    status: "active"
+    path: "conv-003-file-based-artifacts/agreement.yaml"
+
+  - feature_id: "conv-004-submodule-packages"
+    title: "Convention: Git Submodule Package Isolation"
+    status: "active"
+    path: "conv-004-submodule-packages/agreement.yaml"
+
+  - feature_id: "conv-005-claude-commands"
+    title: "Convention: Claude Code Slash Command Integration"
+    status: "active"
+    path: "conv-005-claude-commands/agreement.yaml"
+
+  - feature_id: "conv-006-trusted-publishing"
+    title: "Convention: Trusted npm Publishing via GitHub Actions"
+    status: "active"
+    path: "conv-006-trusted-publishing/agreement.yaml"

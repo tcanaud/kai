@@ -1,0 +1,87 @@
+feature_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "003-feature-lifecycle"
+title: "Feature Lifecycle Tracker"
+status: "active"
+owner: "Thibaud Canaud"
+created: "2026-02-18"
+updated: "2026-02-18"
+
+# ── Dependencies ──────────────────────────────────────
+depends_on:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "004-mermaid-workbench"
+tags: []
+
+# ── Lifecycle (computed) ──────────────────────────────
+lifecycle:
+  stage: "release"
+  stage_since: "2026-02-18"
+  progress: 1.0
+  manual_override: null
+  retroactive: true
+
+# ── Artifacts (computed from scan) ────────────────────
+artifacts:
+  bmad:
+    prd: false
+    architecture: false
+    epics: false
+  speckit:
+    spec: false
+    plan: false
+    research: false
+    tasks: false
+    contracts: false
+    tasks_done: 0
+    tasks_total: 0
+  agreement:
+    exists: false
+    status: ""
+    check: "NOT_APPLICABLE"
+  adr:
+    count: 5
+    ids:
+      - "20260218-use-adr-system"
+      - "20260218-esm-only-zero-deps"
+      - "20260218-git-submodule-monorepo"
+      - "20260218-file-based-artifact-tracking"
+      - "20260218-claude-code-as-primary-ai-interface"
+  mermaid:
+    count: 1
+    layers:
+      L0: 0
+      L1: 0
+      L2: 1
+
+# ── Health (computed) ─────────────────────────────────
+health:
+  overall: "HEALTHY"
+  agreement: "NOT_APPLICABLE"
+  spec_completeness: 0.0
+  task_progress: 1.0
+  adr_coverage: 5
+  diagram_coverage: 1
+  warnings: []
+
+# ── Regression Detection ─────────────────────────────
+last_scan:
+  timestamp: "2026-02-18T00:00:00Z"
+  stage: "release"
+  artifacts_snapshot:
+    bmad_prd: false
+    speckit_spec: false
+    speckit_plan: false
+    speckit_tasks: false
+    agreement_exists: false
+
+# ── Conventions ───────────────────────────────────────
+conventions:
+  - "conv-001-esm-zero-deps"
+  - "conv-002-cli-entry-structure"
+  - "conv-003-file-based-artifacts"
+  - "conv-004-submodule-packages"
+  - "conv-005-claude-commands"
+  - "conv-006-trusted-publishing"

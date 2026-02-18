@@ -1,0 +1,76 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "conv-003-file-based-artifacts"
+title: "Convention: File-Based Artifact Model"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "Thibaud Canaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  All development artifacts (features, agreements, ADRs, diagrams) are stored
+  as YAML or Markdown files inside dotfile directories (.adr/, .agreements/,
+  .features/, .bmad_output/). There is no database, no external service, and
+  no binary state. Everything is versioned in git alongside the code it
+  describes. This makes the entire project state readable by humans, diffable
+  in pull requests, and directly accessible to AI agents like Claude Code.
+
+user_outcomes:
+  - "All project state is visible in git history and pull request diffs"
+  - "AI agents can read and write artifacts with standard file I/O"
+  - "No external service or database to provision, back up, or migrate"
+
+acceptance_criteria:
+  - criterion: "ADRs live in .adr/ as Markdown files with YAML frontmatter"
+    verifiable: true
+  - criterion: "Agreements live in .agreements/ as YAML files"
+    verifiable: true
+  - criterion: "Feature state lives in .features/ as YAML files"
+    verifiable: true
+  - criterion: "No package reads or writes to a database or external API for artifact storage"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces: []
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Artifact formats must remain human-readable plain text (YAML or Markdown)"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit: []
+  code:
+    - ".adr/"
+    - ".agreements/"
+    - ".features/"
+  adr:
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit: []
+  code:
+    - ".adr/**/*.md"
+    - ".agreements/**/*.yaml"
+    - ".features/**/*.yaml"
+
+checksums: {}
+
+# ── Feature Coverage ─────────────────────────────────
+applies_to_features:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "003-feature-lifecycle"
+  - "004-mermaid-workbench"
+  - "005-tcsetup"

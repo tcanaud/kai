@@ -1,0 +1,80 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "conv-001-esm-zero-deps"
+title: "Convention: ESM-Only Modules with Zero Runtime Dependencies"
+status: "active"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "Thibaud Canaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  All packages in the kai toolchain use ES modules exclusively ("type": "module"
+  in package.json) with the node: protocol for built-in imports (node:fs,
+  node:path, node:process, node:url). Runtime dependencies are avoided entirely
+  for CLI-only packages; only mermaid-workbench carries dependencies because it
+  ships a browser-based viewer UI. This keeps install footprint near-zero,
+  eliminates supply-chain risk for the CLI tools, and ensures compatibility
+  with Node.js >= 18.
+
+user_outcomes:
+  - "Users can npx any CLI package with no dependency download beyond the package itself"
+  - "Supply-chain attack surface is minimal for the core toolchain"
+
+acceptance_criteria:
+  - criterion: "Every package.json contains \"type\": \"module\""
+    verifiable: true
+  - criterion: "All built-in imports use the node: protocol prefix"
+    verifiable: true
+  - criterion: "CLI-only packages (adr-system, agreement-system, feature-lifecycle, tcsetup) have zero entries in dependencies"
+    verifiable: true
+  - criterion: "Only packages with a browser/viewer component may declare runtime dependencies"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces: []
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Node.js >= 18 required (engines field in every package.json)"
+  - type: "security"
+    description: "Zero runtime deps for CLI packages eliminates transitive supply-chain risk"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/adr-system/package.json"
+    - "packages/agreement-system/package.json"
+    - "packages/feature-lifecycle/package.json"
+    - "packages/tcsetup/package.json"
+    - "packages/mermaid-workbench/package.json"
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit: []
+  code:
+    - "packages/*/package.json"
+    - "packages/*/src/**/*.js"
+    - "packages/*/bin/*.js"
+
+checksums: {}
+
+# ── Feature Coverage ─────────────────────────────────
+applies_to_features:
+  - "001-adr-system"
+  - "002-agreement-system"
+  - "003-feature-lifecycle"
+  - "004-mermaid-workbench"
+  - "005-tcsetup"
