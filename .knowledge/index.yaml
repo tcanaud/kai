@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-18T10:33:39.710Z"
+generated: "2026-02-18T13:50:46.060Z"
 
 guides:
   - id: commit-and-push
@@ -7,19 +7,19 @@ guides:
     path: .knowledge/guides/commit-and-push.md
     summary: "The kai repo is a git-submodule monorepo: the parent repo tracks pointers to independent package repos under `package..."
     topics: [commit, push, git, submodule, tag, publish, version bump, ci/cd, workflow]
-    status: verified
+    status: stale
   - id: create-new-package
     title: "How to create a new kai package"
     path: .knowledge/guides/create-new-package.md
     summary: "Every kai package follows an identical structure: independent git repo, git submodule in `packages/`, ESM-only with z..."
     topics: [package, new package, scaffold, submodule, npm publish, tcsetup, ci/cd, trusted publishing]
-    status: verified
+    status: stale
   - id: project-philosophy
     title: "kai philosophy — vision, dogmas, and design principles"
     path: .knowledge/guides/project-philosophy.md
     summary: "kai is a project governance system that lives entirely inside the repository. No external service, no database, no da..."
     topics: [philosophy, vision, dogma, principles, architecture, agreements, drift, portability, governance]
-    status: verified
+    status: stale
 
 conventions:
   - id: conv-001-esm-zero-deps
