@@ -1,0 +1,87 @@
+agreement_version: "1.0"
+
+# -- Identity -------------------------------------------------------
+feature_id: "010-feature-lifecycle-v2"
+title: "Feature Lifecycle V2"
+status: "draft"
+created: "2026-02-18"
+updated: "2026-02-18"
+owner: "tcanaud"
+
+# -- Product Intent --------------------------------------------------
+intent: |
+  Complete the governance rail from implementation to release. After tasks
+  reach 100%, the workflow guides the developer through QA verification,
+  traceable PR creation, and post-merge lifecycle closure — mechanically,
+  with zero manual state edits. QA FAIL triggers an automatic recovery
+  loop via product-manager.
+
+user_outcomes:
+  - "Guided endgame: workflow proposes QA, PR, and release steps without the developer remembering the sequence"
+  - "Zero manual state edits: all transitions from implementation-complete to release are mechanical"
+  - "Full traceability: every PR carries links to spec, agreement, QA results, feedbacks, and backlogs"
+
+acceptance_criteria:
+  - criterion: "Zero manual YAML edits from tasks-done to release stage"
+    verifiable: true
+  - criterion: "Every /feature.pr output links spec, agreement, QA, feedbacks, backlogs"
+    verifiable: true
+  - criterion: "Post-merge resolution updates all linked artifacts in a single all-or-nothing operation"
+    verifiable: true
+  - criterion: "Existing features (001-009) work through /feature.workflow with zero regressions"
+    verifiable: true
+  - criterion: "Feature 010 ships via its own V2 workflow (self-proving delivery)"
+    verifiable: true
+
+# -- Interfaces ------------------------------------------------------
+interfaces:
+  - type: "cli"
+    path: "/feature.workflow (updated)"
+    contract: "Extended dependency chain with QA, PR, and post-merge steps; Gate C/D evaluation"
+  - type: "cli"
+    path: "/feature.pr {feature}"
+    contract: "Create GitHub PR with full traceability body; enforces QA PASS + Agreement PASS + tasks done"
+  - type: "cli"
+    path: "/feature.resolve {feature}"
+    contract: "Post-merge resolution: feature to release, backlogs to done, feedbacks to resolved"
+
+# -- Non-Functional Constraints --------------------------------------
+constraints:
+  - type: "compatibility"
+    description: "Zero runtime dependencies — Node.js built-ins only via node: protocol"
+  - type: "compatibility"
+    description: "Requires gh CLI installed and authenticated for PR creation and merge detection"
+  - type: "compatibility"
+    description: "State transitions must be all-or-nothing — no partial updates on failure"
+
+# -- Breaking Change Policy ------------------------------------------
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# -- Traceability ----------------------------------------------------
+references:
+  bmad:
+    - ".bmad_output/planning-artifacts/010-feature-lifecycle-v2/product-brief-kai-2026-02-18.md"
+    - ".bmad_output/planning-artifacts/010-feature-lifecycle-v2/prd.md"
+  speckit:
+    - "specs/010-feature-lifecycle-v2/spec.md"
+    - "specs/010-feature-lifecycle-v2/plan.md"
+    - "specs/010-feature-lifecycle-v2/tasks.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+
+# -- Drift Detection -------------------------------------------------
+watched_paths:
+  bmad:
+    - ".bmad_output/planning-artifacts/010-feature-lifecycle-v2/"
+  speckit:
+    - "specs/010-feature-lifecycle-v2/"
+  code:
+    - "packages/feature-lifecycle/src/"
+    - "packages/feature-lifecycle/templates/commands/"
+
+checksums: {}
