@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-18T13:50:46.060Z"
+generated: "2026-02-18T18:33:37.212Z"
 
 guides:
   - id: commit-and-push
@@ -30,7 +30,7 @@ conventions:
   - id: conv-002-cli-entry-structure
     title: "Convention: Uniform CLI Entry Point Structure"
     path: .agreements/conv-002-cli-entry-structure/agreement.yaml
-    summary: "Every package follows an identical CLI skeleton: bin/cli.js is the entry"
+    summary: "Every package follows a uniform CLI skeleton: bin/cli.js is the entry"
     topics: [uniform, cli, entry, point, structure]
   - id: conv-003-file-based-artifacts
     title: "Convention: File-Based Artifact Model"
@@ -45,7 +45,7 @@ conventions:
   - id: conv-005-claude-commands
     title: "Convention: Claude Code Slash Command Integration"
     path: .agreements/conv-005-claude-commands/agreement.yaml
-    summary: "Every package installs AI-friendly prompt templates into .claude/commands/"
+    summary: "Packages that provide user-facing workflows install AI-friendly prompt"
     topics: [claude, code, slash, command, integration]
   - id: conv-006-trusted-publishing
     title: "Convention: Trusted npm Publishing via GitHub Actions"
@@ -126,3 +126,13 @@ features:
     path: .features/008-product-manager.yaml
     stage: ideation
     topics: [product, manager]
+  - id: 009-qa-system
+    title: "QA System"
+    path: .features/009-qa-system.yaml
+    stage: test
+    topics: [system]
+  - id: 010-feature-lifecycle-v2
+    title: "Feature Lifecycle V2"
+    path: .features/010-feature-lifecycle-v2.yaml
+    stage: ideation
+    topics: [feature, lifecycle]
