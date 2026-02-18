@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "dependencies": {
-    "@tcanaud/knowledge-system": "^1.0.0",
+    "@tcanaud/knowledge-system": "^1.0.1",
+    "@tcanaud/product-manager": "^1.0.0",
     "adr-system": "^1.0.2",
     "agreement-system": "^1.0.3",
     "feature-lifecycle": "^1.0.3",
