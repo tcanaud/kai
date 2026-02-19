@@ -1,0 +1,69 @@
+qa_version: "1.0"
+
+feature_id: "014-playbook-step-model"
+generated: "2026-02-19T22:00:00Z"
+generator: "qa.plan"
+
+checksums:
+  spec_md:
+    path: "specs/014-playbook-step-model/spec.md"
+    sha256: "47444863cc73578ee6891d2e1253f2fbf793618a9d65f5711032052d9b1702e3"
+  agreement_yaml:
+    path: ".agreements/014-playbook-step-model/agreement.yaml"
+    sha256: "99f21d85a016e338b67c6c275b2d225be8fffddcdb4d665350b00bcdd5334eda"
+
+scripts:
+  - filename: "test-valid-model-passes-validation.sh"
+    criterion_ref: "US1.AC1"
+    criterion_text: "Given a playbook with a step that has model: 'sonnet', When the playbook is validated, Then validation passes without errors."
+    type: "acceptance"
+  - filename: "test-supervisor-passes-model.sh"
+    criterion_ref: "US1.AC2"
+    criterion_text: "Given a playbook with a step that has model: 'opus', When the supervisor executes that step, Then the Task subagent is launched with the specified model."
+    type: "acceptance"
+  - filename: "test-no-model-uses-default.sh"
+    criterion_ref: "US1.AC3"
+    criterion_text: "Given a playbook with a step that has no model field, When the supervisor executes that step, Then the Task subagent uses the session default model (no model override is applied)."
+    type: "acceptance"
+  - filename: "test-different-models-per-step.sh"
+    criterion_ref: "US1.AC4"
+    criterion_text: "Given a playbook with steps using different models (e.g., step 1 uses 'opus', step 2 uses 'haiku'), When the supervisor runs the playbook, Then each step uses its own specified model independently."
+    type: "acceptance"
+  - filename: "test-invalid-model-rejected.sh"
+    criterion_ref: "US2.AC1"
+    criterion_text: "Given a playbook with model: 'invalid-model' on a step, When the user runs the validation tool, Then the tool reports a violation identifying the invalid model value and listing the allowed values."
+    type: "acceptance"
+  - filename: "test-valid-model-no-errors.sh"
+    criterion_ref: "US2.AC2"
+    criterion_text: "Given a playbook with model: 'sonnet' on a step, When the user runs the validation tool, Then validation passes without model-related errors."
+    type: "acceptance"
+  - filename: "test-optional-model-field.sh"
+    criterion_ref: "US2.AC3"
+    criterion_text: "Given a playbook with no model field on any step, When the user runs the validation tool, Then validation passes (the field is optional)."
+    type: "acceptance"
+  - filename: "test-template-documents-model.sh"
+    criterion_ref: "US3.AC1"
+    criterion_text: "Given the playbook template file, When a user views the schema reference comments, Then the model field is documented with its allowed values and optional nature."
+    type: "acceptance"
+  - filename: "test-existing-playbooks-backward-compat.sh"
+    criterion_ref: "US3.AC2"
+    criterion_text: "Given a user creates a playbook via /playbook.create, When the playbook is generated, Then any model fields included in the output use valid model values. Also covers FR-011 backward compatibility."
+    type: "acceptance"
+  - filename: "test-supervisor-model-in-prompt.sh"
+    criterion_ref: "US1.AC2+US1.AC3"
+    criterion_text: "The playbook supervisor MUST pass the step's model value to the Task subagent when present, and MUST NOT pass a model override when absent."
+    type: "acceptance"
+  - filename: "test-schema-model-field-interface.sh"
+    criterion_ref: "IF1"
+    criterion_text: "Optional string field on step; allowed values: opus, sonnet, haiku; null when absent."
+    type: "interface"
+  - filename: "test-check-validates-model.sh"
+    criterion_ref: "IF2"
+    criterion_text: "Validates model field values; rejects invalid models with violation message."
+    type: "interface"
+
+total_scripts: 12
+by_type:
+  acceptance: 10
+  interface: 2
+  edge_case: 0

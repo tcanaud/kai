@@ -1,0 +1,76 @@
+# Agreement Template v1
+# Convention: one file per feature, one feature = one agreement = one promise
+
+agreement_version: "1.0"
+
+# -- Identity ------------------------------------------------
+feature_id: "014-playbook-step-model"
+title: "Playbook Step Model Selection"
+status: "draft"
+created: "2026-02-19"
+updated: "2026-02-19"
+owner: "tcanaud"
+
+# -- Product Intent ------------------------------------------
+intent: |
+  Allow playbook authors to specify which AI model (opus, sonnet, haiku) each
+  step should use. Steps without a model field continue to use the session
+  default. This enables cost optimization and performance tuning at the
+  workflow level without changing the execution model.
+
+user_outcomes:
+  - "Playbook authors can assign the right model tier to each step based on task complexity."
+  - "Invalid model values are caught at validation time, before execution."
+  - "Existing playbooks without model fields continue to work unchanged."
+
+acceptance_criteria:
+  - criterion: "A step with a valid model value passes validation and the supervisor delegates with that model."
+    verifiable: true
+  - criterion: "A step with an invalid model value is rejected by the validator with a clear error listing allowed values."
+    verifiable: true
+  - criterion: "A step with no model field uses the session default model (no override applied)."
+    verifiable: true
+  - criterion: "All existing playbooks without model fields validate and execute without modification."
+    verifiable: true
+
+# -- Interfaces -----------------------------------------------
+interfaces:
+  - type: "schema"
+    path: "steps[].model"
+    contract: "Optional string field on step; allowed values: opus, sonnet, haiku; null when absent."
+  - type: "cli"
+    path: "npx @tcanaud/playbook check"
+    contract: "Validates model field values; rejects invalid models with violation message."
+
+# -- Non-Functional Constraints --------------------------------
+constraints: []
+
+# -- Breaking Change Policy ------------------------------------
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# -- Traceability ----------------------------------------------
+references:
+  bmad: []
+  speckit:
+    - "specs/014-playbook-step-model/spec.md"
+    - "specs/014-playbook-step-model/plan.md"
+    - "specs/014-playbook-step-model/contracts/playbook-schema.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+
+# -- Drift Detection -------------------------------------------
+watched_paths:
+  bmad: []
+  speckit:
+    - "specs/014-playbook-step-model/"
+  code:
+    - "packages/playbook/src/yaml-parser.js"
+    - "packages/playbook/src/validator.js"
+    - ".claude/commands/playbook.run.md"
+
+checksums: {}

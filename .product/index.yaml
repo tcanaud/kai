@@ -1,18 +1,18 @@
 product_version: "1.0"
-updated: "2026-02-19"
+updated: "2026-02-19T17:08:21Z"
 
 feedbacks:
-  total: 3
+  total: 4
   by_status:
     new: 0
-    triaged: 3
+    triaged: 4
     excluded: 0
     resolved: 0
   by_category:
     critical-bug: 0
     bug: 0
     optimization: 0
-    evolution: 1
+    evolution: 2
     new-feature: 2
   items:
     - id: "FB-001"
@@ -33,14 +33,20 @@ feedbacks:
       category: "new-feature"
       priority: "medium"
       created: "2026-02-19"
+    - id: "FB-004"
+      title: "Permettre de spécifier le modèle à utiliser par étape de playbook"
+      status: "triaged"
+      category: "evolution"
+      priority: "high"
+      created: "2026-02-19"
 
 backlogs:
-  total: 3
+  total: 4
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 3
+    promoted: 4
     cancelled: 0
   items:
     - id: "BL-001"
@@ -60,6 +66,12 @@ backlogs:
       status: "promoted"
       category: "new-feature"
       priority: "medium"
+      created: "2026-02-19"
+    - id: "BL-004"
+      title: "Playbook step model selection"
+      status: "promoted"
+      category: "evolution"
+      priority: "high"
       created: "2026-02-19"
 
 metrics:

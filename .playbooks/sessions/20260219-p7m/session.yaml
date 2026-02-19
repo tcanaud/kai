@@ -1,0 +1,11 @@
+session_id: "20260219-p7m"
+playbook: "intention-to-pr"
+feature: "014-playbook-step-model"
+args:
+  intention: "Je souhaiterais que nous puissions ajouter une évolution dans le système de playbook pour permettre à une étape de pouvoir déterminer le modèle à utiliser. Puisque les playbook proposent sur Task nous pourrions le faire donc il faudrait pouvoir implémenter une propriété dans le yaml pour déterminer quel modèle a utilisé pour tel step. si aucun modèle n'est renseigné alors il devra utiliser celui par défaut (de la session courante) il faut donc mettre à jour les playbook existants + les commandes qui interagissent avec les playbooks. tout en suivant la philosophie kai"
+  feature: "014-playbook-step-model"
+status: "in_progress"
+started_at: "2026-02-19T18:15:00Z"
+completed_at: ""
+current_step: "pr"
+worktree: ""
