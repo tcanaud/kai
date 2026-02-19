@@ -1,11 +1,11 @@
 product_version: "1.0"
-updated: "2026-02-19T17:08:21Z"
+updated: "2026-02-19T18:20:01Z"
 
 feedbacks:
-  total: 4
+  total: 5
   by_status:
     new: 0
-    triaged: 4
+    triaged: 5
     excluded: 0
     resolved: 0
   by_category:
@@ -13,7 +13,7 @@ feedbacks:
     bug: 0
     optimization: 0
     evolution: 2
-    new-feature: 2
+    new-feature: 3
   items:
     - id: "FB-001"
       title: "Add shared input validation utility across all packages"
@@ -39,14 +39,20 @@ feedbacks:
       category: "evolution"
       priority: "high"
       created: "2026-02-19"
+    - id: "FB-005"
+      title: "Add status and list commands to @tcanaud/playbook CLI"
+      status: "new"
+      category: "new-feature"
+      priority: null
+      created: "2026-02-19"
 
 backlogs:
-  total: 4
+  total: 5
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 4
+    promoted: 5
     cancelled: 0
   items:
     - id: "BL-001"
@@ -72,6 +78,12 @@ backlogs:
       status: "promoted"
       category: "evolution"
       priority: "high"
+      created: "2026-02-19"
+    - id: "BL-005"
+      title: "Add status and list commands to @tcanaud/playbook CLI"
+      status: "promoted"
+      category: "new-feature"
+      priority: "medium"
       created: "2026-02-19"
 
 metrics:

@@ -1,0 +1,81 @@
+# Agreement: Playbook CLI Commands (Status & List)
+# Version: 1.0
+# Feature ID: 015-playbook-cli-commands
+
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "015-playbook-cli-commands"
+title: "Playbook CLI Commands (Status & List)"
+status: "draft"
+created: "2026-02-19"
+updated: "2026-02-19"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+# Source: Spec Kit (specs/015-playbook-cli-commands/spec.md)
+intent: |
+  Enable real-time visibility into running playbook sessions and provide programmatic access to session history through two new CLI commands. The `status` command displays currently running sessions for live monitoring, while the `list` command provides complete session history in human-readable or JSON format for both interactive use and automation system integration.
+
+user_outcomes:
+  - "DevOps engineers can quickly monitor which playbook sessions are currently running without interrupting execution"
+  - "CI/CD systems can programmatically query playbook session status and results for automated workflows"
+  - "Users can browse historical playbook sessions and understand execution history in a unified interface"
+
+acceptance_criteria:
+  - criterion: "npx @tcanaud/playbook status command exists and displays all currently running sessions with ID, creation time, and status"
+    verifiable: true
+  - criterion: "npx @tcanaud/playbook list command exists and displays all sessions (running and completed) in chronological order"
+    verifiable: true
+  - criterion: "Both commands support --json flag that outputs valid, parseable JSON with consistent schema"
+    verifiable: true
+  - criterion: "Human-readable output is fully visible in 80+ character terminal width without horizontal scrolling"
+    verifiable: true
+  - criterion: "Both commands execute and complete in under 1 second for up to 100 sessions"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+# Source: Spec Kit (specs/015-playbook-cli-commands/plan.md)
+interfaces:
+  - type: "cli"
+    path: "npx @tcanaud/playbook status"
+    contract: "Display all currently running playbook sessions in human-readable format by default, JSON with --json flag"
+  - type: "cli"
+    path: "npx @tcanaud/playbook list"
+    contract: "Display all playbook sessions (running and completed) in human-readable format by default, JSON with --json flag"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "performance"
+    description: "Commands must execute and complete in under 1 second regardless of session count (up to 100 sessions)"
+  - type: "compatibility"
+    description: "Node.js ESM module (type: module), Node >= 18.0.0 required"
+  - type: "dependency"
+    description: "Zero runtime dependencies - Node.js built-ins only (node: protocol imports). File-based session storage via .playbooks/sessions/ directory"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit:
+    - "specs/015-playbook-cli-commands/spec.md"
+    - "specs/015-playbook-cli-commands/plan.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit:
+    - "specs/015-playbook-cli-commands/spec.md"
+    - "specs/015-playbook-cli-commands/plan.md"
+  code: []
+
+checksums: {}

@@ -1,0 +1,69 @@
+qa_version: "1.0"
+
+feature_id: "015-playbook-cli-commands"
+generated: "2026-02-19T19:35:00Z"
+generator: "qa.plan"
+
+checksums:
+  spec_md:
+    path: "specs/015-playbook-cli-commands/spec.md"
+    sha256: "10c34e77d791ec93279c121d5f822a39629848227bf040b98bba859a320029c6"
+  agreement_yaml:
+    path: ".agreements/015-playbook-cli-commands/agreement.yaml"
+    sha256: "b0a0b5984feed362d50cb51c1489282dc33e8855d36809a7764110deb318f285"
+
+scripts:
+  - filename: "test-status-single-session.sh"
+    criterion_ref: "US1.AC1"
+    criterion_text: "Given one playbook session is currently running, When the user runs npx @tcanaud/playbook status, Then the terminal displays the session ID, creation time, current status, and any relevant progress information in a human-readable format"
+    type: "acceptance"
+  - filename: "test-status-multiple-sessions.sh"
+    criterion_ref: "US1.AC2"
+    criterion_text: "Given multiple playbook sessions are running simultaneously, When the user runs npx @tcanaud/playbook status, Then all sessions are displayed with clear visual separation"
+    type: "acceptance"
+  - filename: "test-status-no-sessions.sh"
+    criterion_ref: "US1.AC3"
+    criterion_text: "Given no playbook sessions are running, When the user runs npx @tcanaud/playbook status, Then the command displays a clear message indicating no active sessions"
+    type: "acceptance"
+  - filename: "test-list-json-valid.sh"
+    criterion_ref: "US2.AC1"
+    criterion_text: "Given multiple playbook sessions exist (running, completed, or failed), When the user runs npx @tcanaud/playbook list --json, Then the output is valid JSON containing an array of session objects with consistent schema"
+    type: "acceptance"
+  - filename: "test-list-json-schema.sh"
+    criterion_ref: "US2.AC2"
+    criterion_text: "Given the list command is executed with JSON output, When parsing the JSON, Then each session object contains at minimum: session ID, creation timestamp, and final status"
+    type: "acceptance"
+  - filename: "test-list-json-empty.sh"
+    criterion_ref: "US2.AC3"
+    criterion_text: "Given no sessions exist in the system, When the user runs npx @tcanaud/playbook list --json, Then valid empty JSON (empty array) is returned"
+    type: "acceptance"
+  - filename: "test-list-all-sessions.sh"
+    criterion_ref: "US3.AC1"
+    criterion_text: "Given multiple playbook sessions with different statuses exist, When the user runs npx @tcanaud/playbook list, Then all sessions are displayed in a table or list format with clear status indicators (running, completed, failed)"
+    type: "acceptance"
+  - filename: "test-list-chronological-sort.sh"
+    criterion_ref: "US3.AC2"
+    criterion_text: "Given sessions have varying timestamps, When npx @tcanaud/playbook list is executed, Then output is sorted chronologically (most recent first) for easy scanning"
+    type: "acceptance"
+  - filename: "test-terminal-formatting-status.sh"
+    criterion_ref: "US4.AC1"
+    criterion_text: "Given the status or list command is executed without --json flag, When output is displayed, Then formatting uses clear alignment, readable spacing, and consistent field labels"
+    type: "acceptance"
+  - filename: "test-terminal-width.sh"
+    criterion_ref: "US4.AC2"
+    criterion_text: "Given terminal output is produced, When viewed in a standard terminal (80+ character width), Then content is fully visible without horizontal scrolling for typical session counts"
+    type: "acceptance"
+  - filename: "test-status-cli-interface.sh"
+    criterion_ref: "IF1"
+    criterion_text: "Display all currently running playbook sessions in human-readable format by default, JSON with --json flag"
+    type: "interface"
+  - filename: "test-list-cli-interface.sh"
+    criterion_ref: "IF2"
+    criterion_text: "Display all playbook sessions (running and completed) in human-readable format by default, JSON with --json flag"
+    type: "interface"
+
+total_scripts: 12
+by_type:
+  acceptance: 10
+  interface: 2
+  edge_case: 0
