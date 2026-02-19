@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-19T14:54:55.338Z"
+generated: "2026-02-19T18:06:56.983Z"
 
 guides:
   - id: commit-and-push
@@ -146,3 +146,13 @@ features:
     path: .features/012-superviseur-autonome-boucle-complete.yaml
     stage: ideation
     topics: [superviseur, autonome, pour, boucle, complète, produit, implémentation]
+  - id: 013-playbook-create
+    title: "Commande /playbook.create Pour Générer Des Playbooks Adaptés Au Projet"
+    path: .features/013-playbook-create.yaml
+    stage: ideation
+    topics: [commande, playbook.create, pour, générer, des, playbooks, adaptés, projet]
+  - id: 014-playbook-step-model
+    title: "Playbook Step Model Selection"
+    path: .features/014-playbook-step-model.yaml
+    stage: ideation
+    topics: [playbook, step, model, selection]
