@@ -1,16 +1,16 @@
 product_version: "1.0"
-updated: "2026-02-19T18:20:01Z"
+updated: "2026-02-19T21:28:00Z"
 
 feedbacks:
-  total: 5
+  total: 6
   by_status:
     new: 0
-    triaged: 5
+    triaged: 6
     excluded: 0
     resolved: 0
   by_category:
     critical-bug: 0
-    bug: 0
+    bug: 1
     optimization: 0
     evolution: 2
     new-feature: 3
@@ -41,18 +41,24 @@ feedbacks:
       created: "2026-02-19"
     - id: "FB-005"
       title: "Add status and list commands to @tcanaud/playbook CLI"
-      status: "new"
+      status: "triaged"
       category: "new-feature"
-      priority: null
+      priority: "medium"
+      created: "2026-02-19"
+    - id: "FB-006"
+      title: "tcsetup update incorrectly appends data without merging logic"
+      status: "triaged"
+      category: "bug"
+      priority: "high"
       created: "2026-02-19"
 
 backlogs:
-  total: 5
+  total: 6
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 5
+    promoted: 6
     cancelled: 0
   items:
     - id: "BL-001"
@@ -84,6 +90,12 @@ backlogs:
       status: "promoted"
       category: "new-feature"
       priority: "medium"
+      created: "2026-02-19"
+    - id: "BL-006"
+      title: "Fix tcsetup merge logic for customize.yaml files"
+      status: "promoted"
+      category: "bug"
+      priority: "high"
       created: "2026-02-19"
 
 metrics:
