@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-19T18:06:56.983Z"
+generated: "2026-02-19T20:15:30.941Z"
 
 guides:
   - id: commit-and-push
@@ -156,3 +156,8 @@ features:
     path: .features/014-playbook-step-model.yaml
     stage: ideation
     topics: [playbook, step, model, selection]
+  - id: 015-playbook-cli-commands
+    title: "Add status and list commands to @tcanaud/playbook CLI"
+    path: .features/015-playbook-cli-commands.yaml
+    stage: ideation
+    topics: [add, status, and, list, commands, @tcanaud, playbook, cli]
