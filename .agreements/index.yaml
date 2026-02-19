@@ -63,3 +63,10 @@ agreements:
     path: "010-feature-lifecycle-v2/agreement.yaml"
     created: "2026-02-18"
     updated: "2026-02-18"
+
+  - feature_id: "012-playbook-supervisor"
+    title: "Playbook Supervisor — Autonomous Feature Loop"
+    status: "draft"
+    path: "012-playbook-supervisor/agreement.yaml"
+    created: "2026-02-19"
+    updated: "2026-02-19"

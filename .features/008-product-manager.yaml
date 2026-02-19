@@ -17,25 +17,25 @@ workflow_path: "full"
 
 # ── Lifecycle (computed) ──────────────────────────────
 lifecycle:
-  stage: "ideation"
+  stage: "implement"
   stage_since: "2026-02-18"
-  progress: 0.0
+  progress: 0.96
   manual_override: null
 
 # ── Artifacts (computed from scan) ────────────────────
 artifacts:
   bmad:
-    prd: false
+    prd: true
     architecture: false
     epics: false
   speckit:
-    spec: false
-    plan: false
-    research: false
-    tasks: false
-    contracts: false
-    tasks_done: 0
-    tasks_total: 0
+    spec: true
+    plan: true
+    research: true
+    tasks: true
+    contracts: true
+    tasks_done: 22
+    tasks_total: 23
   agreement:
     exists: false
     status: ""
@@ -52,21 +52,23 @@ artifacts:
 
 # ── Health (computed) ─────────────────────────────────
 health:
-  overall: "HEALTHY"
+  overall: "WARNING"
   agreement: "MISSING"
-  spec_completeness: 0.0
-  task_progress: 0.0
+  spec_completeness: 1.0
+  task_progress: 0.96
   adr_coverage: 0
   diagram_coverage: 0
-  warnings: []
+  warnings:
+    - "No ADRs reference this feature"
+    - "adr_coverage == 0"
 
 # ── Regression Detection ─────────────────────────────
 last_scan:
-  timestamp: "2026-02-18T00:00:00Z"
-  stage: "ideation"
+  timestamp: "2026-02-18T22:00:00Z"
+  stage: "implement"
   artifacts_snapshot:
-    bmad_prd: false
-    speckit_spec: false
-    speckit_plan: false
-    speckit_tasks: false
+    bmad_prd: true
+    speckit_spec: true
+    speckit_plan: true
+    speckit_tasks: true
     agreement_exists: false

@@ -1,43 +1,44 @@
 feature_version: "1.0"
 
 # ── Identity ──────────────────────────────────────────
-feature_id: "010-feature-lifecycle-v2"
-title: "Feature Lifecycle V2"
+feature_id: "012-superviseur-autonome-boucle-complete"
+title: "Superviseur Autonome Pour Boucle Complète Produit-Implémentation"
 status: "active"
-owner: "tcanaud"
+owner: "Thibaud Canaud"
 created: "2026-02-18"
 updated: "2026-02-18"
-workflow_path: "full"
 
 # ── Dependencies ──────────────────────────────────────
-depends_on:
-  - "009-qa-system"
+depends_on: []
 tags: []
+
+# ── Workflow ──────────────────────────────────────────
+workflow_path: "full"
 
 # ── Lifecycle (computed) ──────────────────────────────
 lifecycle:
-  stage: "test"
+  stage: "ideation"
   stage_since: "2026-02-18"
-  progress: 1.0
+  progress: 0.0
   manual_override: null
 
 # ── Artifacts (computed from scan) ────────────────────
 artifacts:
   bmad:
-    prd: true
+    prd: false
     architecture: false
     epics: false
   speckit:
-    spec: true
-    plan: true
-    research: true
-    tasks: true
-    contracts: true
-    tasks_done: 40
-    tasks_total: 40
+    spec: false
+    plan: false
+    research: false
+    tasks: false
+    contracts: false
+    tasks_done: 0
+    tasks_total: 0
   agreement:
-    exists: true
-    status: "draft"
+    exists: false
+    status: ""
     check: "MISSING"
   adr:
     count: 0
@@ -51,24 +52,21 @@ artifacts:
 
 # ── Health (computed) ─────────────────────────────────
 health:
-  overall: "WARNING"
+  overall: "HEALTHY"
   agreement: "MISSING"
-  spec_completeness: 1.0
-  task_progress: 1.0
+  spec_completeness: 0.0
+  task_progress: 0.0
   adr_coverage: 0
   diagram_coverage: 0
-  warnings:
-    - "Agreement check not run -- run /agreement.check 010-feature-lifecycle-v2"
-    - "No ADRs reference this feature"
-    - "adr_coverage == 0"
+  warnings: []
 
 # ── Regression Detection ─────────────────────────────
 last_scan:
-  timestamp: "2026-02-18T22:00:00Z"
-  stage: "test"
+  timestamp: "2026-02-18T21:14:50Z"
+  stage: "ideation"
   artifacts_snapshot:
-    bmad_prd: true
-    speckit_spec: true
-    speckit_plan: true
-    speckit_tasks: true
-    agreement_exists: true
+    bmad_prd: false
+    speckit_spec: false
+    speckit_plan: false
+    speckit_tasks: false
+    agreement_exists: false
