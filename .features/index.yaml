@@ -2,7 +2,7 @@
 # Auto-maintained by /feature.status, /feature.list, and /feature.discover
 
 version: "1.0"
-updated: "2026-02-18"
+updated: "2026-02-19"
 
 features:
   - id: "001-adr-system"
@@ -73,6 +73,12 @@ features:
     health: "HEALTHY"
   - id: "012-superviseur-autonome-boucle-complete"
     title: "Superviseur Autonome Pour Boucle Complète Produit-Implémentation"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"
+  - id: "013-playbook-create"
+    title: "Commande /playbook.create Pour Générer Des Playbooks Adaptés Au Projet"
     status: "active"
     stage: "ideation"
     progress: 0.0

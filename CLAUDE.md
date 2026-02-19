@@ -11,6 +11,8 @@ Auto-generated from all feature plans. Last updated: 2026-02-18
 - File-based — YAML + Markdown in `.features/`, `.qa/`, `.product/`, `.agreements/`, `specs/` directories (010-feature-lifecycle-v2)
 - Node.js ESM (`"type": "module"`), Node >= 18.0.0 + None — zero runtime dependencies (`node:` protocol imports only). External tool dependencies: Git CLI, GitHub CLI (`gh`) for PR steps only, Claude Code CLI. (012-playbook-supervisor)
 - File-based — `.playbooks/sessions/{id}/` with `session.yaml` + `journal.yaml`, git-tracked. (012-playbook-supervisor)
+- Node.js ESM (`"type": "module"`), Node >= 18.0.0 (for the `@tcanaud/playbook` package changes only — installer/updater). The slash command itself is a Markdown prompt executed by Claude Code. + None — zero runtime dependencies (`node:` protocol imports only). The slash command template relies on Claude Code's built-in capabilities (file reading, writing, Bash tool for `npx @tcanaud/playbook check`). (013-playbook-create)
+- File-based — generated playbooks written to `.playbooks/playbooks/{name}.yaml`, index updated at `.playbooks/_index.yaml`. (013-playbook-create)
 
 - Node.js ESM (`"type": "module"`), Node >= 18.0.0 + None — zero runtime dependencies (Node.js built-ins only via `node:` protocol imports) (006-tcsetup-update)
 
@@ -30,9 +32,9 @@ tests/
 Node.js ESM (`"type": "module"`), Node >= 18.0.0: Follow standard conventions
 
 ## Recent Changes
+- 013-playbook-create: Added Node.js ESM (`"type": "module"`), Node >= 18.0.0 (for the `@tcanaud/playbook` package changes only — installer/updater). The slash command itself is a Markdown prompt executed by Claude Code. + None — zero runtime dependencies (`node:` protocol imports only). The slash command template relies on Claude Code's built-in capabilities (file reading, writing, Bash tool for `npx @tcanaud/playbook check`).
 - 012-playbook-supervisor: Added Node.js ESM (`"type": "module"`), Node >= 18.0.0 + None — zero runtime dependencies (`node:` protocol imports only). External tool dependencies: Git CLI, GitHub CLI (`gh`) for PR steps only, Claude Code CLI.
 - 010-feature-lifecycle-v2: Added Node.js ESM (`"type": "module"`), Node >= 18.0.0 + None — zero runtime dependencies (Node.js built-ins only via `node:` protocol imports). External tool dependency: GitHub CLI (`gh`) for PR creation and merge detection.
-- 009-qa-system: Added Node.js ESM (`"type": "module"`), Node >= 18.0.0 + None — zero runtime dependencies (Node.js built-ins only via `node:` protocol imports)
 
 
 <!-- MANUAL ADDITIONS START -->

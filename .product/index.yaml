@@ -1,11 +1,11 @@
 product_version: "1.0"
-updated: "2026-02-18"
+updated: "2026-02-19"
 
 feedbacks:
-  total: 2
+  total: 3
   by_status:
     new: 0
-    triaged: 2
+    triaged: 3
     excluded: 0
     resolved: 0
   by_category:
@@ -13,7 +13,7 @@ feedbacks:
     bug: 0
     optimization: 0
     evolution: 1
-    new-feature: 1
+    new-feature: 2
   items:
     - id: "FB-001"
       title: "Add shared input validation utility across all packages"
@@ -27,14 +27,20 @@ feedbacks:
       category: "new-feature"
       priority: "medium"
       created: "2026-02-18"
+    - id: "FB-003"
+      title: "Commande /playbook.create pour générer des playbooks adaptés au projet"
+      status: "triaged"
+      category: "new-feature"
+      priority: "medium"
+      created: "2026-02-19"
 
 backlogs:
-  total: 2
+  total: 3
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 2
+    promoted: 3
     cancelled: 0
   items:
     - id: "BL-001"
@@ -49,6 +55,12 @@ backlogs:
       category: "new-feature"
       priority: "medium"
       created: "2026-02-18"
+    - id: "BL-003"
+      title: "Commande /playbook.create pour générer des playbooks adaptés au projet"
+      status: "promoted"
+      category: "new-feature"
+      priority: "medium"
+      created: "2026-02-19"
 
 metrics:
   feedback_to_backlog_rate: 1.0

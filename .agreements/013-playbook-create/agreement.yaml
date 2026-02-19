@@ -1,0 +1,80 @@
+# Agreement: /playbook.create — Custom Playbook Generation
+# Convention: one file per feature, one feature = one agreement = one promise
+
+agreement_version: "1.0"
+
+# -- Identity -----------------------------------------------
+feature_id: "013-playbook-create"
+title: "/playbook.create — Custom Playbook Generation"
+status: "draft"
+created: "2026-02-19"
+updated: "2026-02-19"
+owner: "tcanaud"
+
+# -- Product Intent -----------------------------------------
+intent: |
+  Let a developer describe a workflow in plain language and receive a project-adapted
+  playbook YAML file that uses only verified slash commands, follows the project's
+  existing conventions, and passes the playbook validator — no manual YAML editing required.
+
+user_outcomes:
+  - "Developer turns a free-text intention into a valid, reusable playbook in a single session"
+  - "Generated playbooks feel native to the project — matching existing autonomy, naming, and condition patterns"
+  - "Playbooks contain no hardcoded feature values; all feature references use argument interpolation"
+
+acceptance_criteria:
+  - criterion: "Generated playbook passes `npx @tcanaud/playbook check` with zero violations"
+    verifiable: true
+  - criterion: "All slash commands referenced in the playbook exist in `.claude/commands/`"
+    verifiable: true
+  - criterion: "No feature-specific hardcoded values — all feature references use {{arg}} interpolation"
+    verifiable: true
+  - criterion: "Playbook index at `.playbooks/_index.yaml` is updated with the new entry after creation"
+    verifiable: true
+  - criterion: "Naming conflicts are detected and resolved before writing (no silent overwrites)"
+    verifiable: true
+
+# -- Interfaces ---------------------------------------------
+interfaces:
+  - type: "cli"
+    path: "/playbook.create {intention}"
+    contract: "Claude Code slash command — accepts free-text intention, outputs validated playbook YAML"
+
+# -- Non-Functional Constraints ------------------------------
+constraints:
+  - type: "compatibility"
+    description: "Zero runtime dependencies — slash command is pure Markdown prompt; package changes use node: imports only"
+
+# -- Breaking Change Policy ----------------------------------
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# -- Traceability --------------------------------------------
+references:
+  bmad: []
+  speckit:
+    - "specs/013-playbook-create/spec.md"
+    - "specs/013-playbook-create/plan.md"
+    - "specs/013-playbook-create/contracts/playbook-create-contract.md"
+    - "specs/013-playbook-create/data-model.md"
+    - "specs/013-playbook-create/tasks.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-git-submodule-monorepo.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+    - ".adr/global/20260218-use-adr-system.md"
+
+# -- Drift Detection -----------------------------------------
+watched_paths:
+  bmad: []
+  speckit:
+    - "specs/013-playbook-create/"
+  code:
+    - "packages/playbook/templates/commands/playbook.create.md"
+    - "packages/playbook/src/installer.js"
+    - "packages/playbook/src/updater.js"
+
+checksums: {}
