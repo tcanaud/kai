@@ -68,3 +68,10 @@ entries:
     duration_seconds: 525
     trigger: "verdict_fail"
     human_response: "fix and continue"
+  - step_id: "pr"
+    status: "done"
+    decision: "gate"
+    started_at: "2026-02-19T19:25:01Z"
+    completed_at: "2026-02-19T19:26:08Z"
+    duration_seconds: 67
+    human_response: "yes"
