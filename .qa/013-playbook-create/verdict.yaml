@@ -1,0 +1,114 @@
+qa_version: "1.0"
+feature_id: "013-playbook-create"
+verdict: "PASS"
+timestamp: "2026-02-19T17:10:00Z"
+runner: "qa.run"
+
+checksums:
+  spec_md:
+    path: "specs/013-playbook-create/spec.md"
+    sha256: "05b6436c6236e0291e35cc47925aa06f7526f76e222cec3413b2a8b27789b46e"
+  agreement_yaml:
+    path: ".agreements/013-playbook-create/agreement.yaml"
+    sha256: "d98361069385f8a1cb686a025c8f75a08f4ef0450cc8469ffb9ba9f95a8bc2d7"
+
+summary:
+  total: 19
+  passed: 19
+  failed: 0
+
+results:
+  - filename: "test-valid-playbook-from-intention.sh"
+    criterion_ref: "US1.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-step-autonomy-and-policies.sh"
+    criterion_ref: "US1.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-validator-zero-violations.sh"
+    criterion_ref: "US1.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-vague-intention-clarification.sh"
+    criterion_ref: "US1.AC4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-omits-qa-when-not-installed.sh"
+    criterion_ref: "US2.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-follows-existing-patterns.sh"
+    criterion_ref: "US2.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-naming-conventions.sh"
+    criterion_ref: "US2.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-identifies-all-commands.sh"
+    criterion_ref: "US2.AC4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-modify-autonomy-revalidate.sh"
+    criterion_ref: "US3.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-add-step-command.sh"
+    criterion_ref: "US3.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-remove-step-dependency-warning.sh"
+    criterion_ref: "US3.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-index-updated-after-creation.sh"
+    criterion_ref: "US3.AC4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-feature-arg-interpolation.sh"
+    criterion_ref: "US4.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-no-hardcoded-feature-ids.sh"
+    criterion_ref: "US4.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-feature-arg-resolves.sh"
+    criterion_ref: "US4.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-name-slug-from-intention.sh"
+    criterion_ref: "US5.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-conflict-detection.sh"
+    criterion_ref: "US5.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-rename-validates-slug.sh"
+    criterion_ref: "US5.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-cli-slash-command-interface.sh"
+    criterion_ref: "IF1"
+    status: "PASS"
+    exit_code: 0

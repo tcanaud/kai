@@ -70,3 +70,10 @@ agreements:
     path: "012-playbook-supervisor/agreement.yaml"
     created: "2026-02-19"
     updated: "2026-02-19"
+
+  - feature_id: "013-playbook-create"
+    title: "/playbook.create — Custom Playbook Generation"
+    status: "draft"
+    path: "013-playbook-create/agreement.yaml"
+    created: "2026-02-19"
+    updated: "2026-02-19"
