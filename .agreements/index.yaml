@@ -77,3 +77,10 @@ agreements:
     path: "013-playbook-create/agreement.yaml"
     created: "2026-02-19"
     updated: "2026-02-19"
+
+  - feature_id: "014-playbook-step-model"
+    title: "Playbook Step Model Selection"
+    status: "draft"
+    path: "014-playbook-step-model/agreement.yaml"
+    created: "2026-02-19"
+    updated: "2026-02-19"

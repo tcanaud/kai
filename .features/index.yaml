@@ -2,7 +2,7 @@
 # Auto-maintained by /feature.status, /feature.list, and /feature.discover
 
 version: "1.0"
-updated: "2026-02-19"
+updated: "2026-02-19T17:08:21Z"
 
 features:
   - id: "001-adr-system"
@@ -79,6 +79,12 @@ features:
     health: "HEALTHY"
   - id: "013-playbook-create"
     title: "Commande /playbook.create Pour Générer Des Playbooks Adaptés Au Projet"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"
+  - id: "014-playbook-step-model"
+    title: "Playbook Step Model Selection"
     status: "active"
     stage: "ideation"
     progress: 0.0
