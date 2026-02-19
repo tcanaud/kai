@@ -6,6 +6,7 @@
   ],
   "dependencies": {
     "@tcanaud/knowledge-system": "^1.0.1",
+    "@tcanaud/playbook": "^1.1.0",
     "@tcanaud/product-manager": "^1.0.0",
     "@tcanaud/qa-system": "^1.0.0",
     "adr-system": "^1.0.2",
