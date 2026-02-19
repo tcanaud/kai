@@ -2,10 +2,10 @@ product_version: "1.0"
 updated: "2026-02-18"
 
 feedbacks:
-  total: 1
+  total: 2
   by_status:
     new: 0
-    triaged: 1
+    triaged: 2
     excluded: 0
     resolved: 0
   by_category:
@@ -13,7 +13,7 @@ feedbacks:
     bug: 0
     optimization: 0
     evolution: 1
-    new-feature: 0
+    new-feature: 1
   items:
     - id: "FB-001"
       title: "Add shared input validation utility across all packages"
@@ -21,20 +21,32 @@ feedbacks:
       category: "evolution"
       priority: "medium"
       created: "2026-02-18"
+    - id: "FB-002"
+      title: "Superviseur autonome pour boucle complète produit-implémentation"
+      status: "triaged"
+      category: "new-feature"
+      priority: "medium"
+      created: "2026-02-18"
 
 backlogs:
-  total: 1
+  total: 2
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 1
+    promoted: 2
     cancelled: 0
   items:
     - id: "BL-001"
       title: "Shared input validation across all kai packages"
       status: "promoted"
       category: "evolution"
+      priority: "medium"
+      created: "2026-02-18"
+    - id: "BL-002"
+      title: "Superviseur autonome pour boucle complète produit-implémentation"
+      status: "promoted"
+      category: "new-feature"
       priority: "medium"
       created: "2026-02-18"
 

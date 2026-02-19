@@ -1,0 +1,91 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "012-playbook-supervisor"
+title: "Playbook Supervisor — Autonomous Feature Loop"
+status: "draft"
+created: "2026-02-19"
+updated: "2026-02-19"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  The Playbook Supervisor introduces YAML-driven orchestration for kai's feature workflow.
+  A /playbook.run slash command reads a playbook definition, creates a persistent session,
+  and delegates each step to a Task subagent with fresh context — shifting the developer
+  from executor to decider. The supervisor uses the same slash commands as manual execution,
+  preserving governance by construction. Sessions are git-tracked for crash recovery and auditability.
+
+user_outcomes:
+  - "Developer launches a playbook and walks away — steps chain autonomously until a gate or completion"
+  - "Crashed sessions resume without data loss or re-execution of completed steps"
+  - "Every autonomous decision and human intervention is auditable via git-tracked session journals"
+
+acceptance_criteria:
+  - criterion: "Auto-feature playbook chains at least 4 consecutive steps in auto mode without human intervention"
+    verifiable: true
+  - criterion: "Artifacts produced by a playbook run are identical to those produced by manual slash command execution"
+    verifiable: true
+  - criterion: "A crashed session resumes from the correct step without duplicate journal entries"
+    verifiable: true
+  - criterion: "Playbook validator rejects malformed YAML with specific violation messages referencing allowed values"
+    verifiable: true
+  - criterion: "Session journal records status, decision type, duration, trigger, and human response for every step"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces:
+  - type: "cli"
+    path: "npx @tcanaud/playbook init|update|start|check|help"
+    contract: "Scaffold, refresh, worktree, validate, and help commands"
+  - type: "cli"
+    path: "/playbook.run {playbook} {feature}"
+    contract: "Supervisor slash command — orchestrates playbook steps via Task subagents"
+  - type: "cli"
+    path: "/playbook.resume"
+    contract: "Argumentless resume — auto-detects in-progress session and continues"
+  - type: "schema"
+    path: ".playbooks/playbooks/*.yaml"
+    contract: "Fixed vocabulary: autonomy (auto|gate_on_breaking|gate_always|skip), error_policy (stop|retry_once|gate), conditions, triggers"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "ESM-only, zero runtime dependencies — node: protocol imports only"
+  - type: "compatibility"
+    description: "YAML parsing via regex only — no YAML library (kai convention)"
+  - type: "compatibility"
+    description: "Supervisor is a slash command prompt, not Node.js code — Task tool requires Claude Code context"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad:
+    - ".bmad_output/planning-artifacts/012-superviseur-autonome-boucle-complete/product-brief-kai-2026-02-18.md"
+    - ".bmad_output/planning-artifacts/012-superviseur-autonome-boucle-complete/prd.md"
+  speckit:
+    - "specs/012-playbook-supervisor/spec.md"
+    - "specs/012-playbook-supervisor/plan.md"
+    - "specs/012-playbook-supervisor/tasks.md"
+    - "specs/012-playbook-supervisor/contracts/playbook-schema.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-git-submodule-monorepo.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad:
+    - ".bmad_output/planning-artifacts/012-superviseur-autonome-boucle-complete/"
+  speckit:
+    - "specs/012-playbook-supervisor/"
+  code:
+    - "packages/playbook/"
+
+checksums: {}

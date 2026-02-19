@@ -22,3 +22,6 @@
 [submodule "packages/qa-system"]
 	path = packages/qa-system
 	url = https://github.com/tcanaud/qa-system.git
+[submodule "packages/playbook"]
+	path = packages/playbook
+	url = https://github.com/tcanaud/playbook.git

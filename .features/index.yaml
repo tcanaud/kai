@@ -50,9 +50,9 @@ features:
   - id: "008-product-manager"
     title: "Product Manager"
     status: "active"
-    stage: "ideation"
-    progress: 0.0
-    health: "HEALTHY"
+    stage: "implement"
+    progress: 0.96
+    health: "WARNING"
   - id: "009-qa-system"
     title: "QA System"
     status: "active"
@@ -62,11 +62,17 @@ features:
   - id: "010-feature-lifecycle-v2"
     title: "Feature Lifecycle V2"
     status: "active"
+    stage: "test"
+    progress: 1.0
+    health: "WARNING"
+  - id: "011-shared-input-validation"
+    title: "Shared Input Validation Across All Kai Packages"
+    status: "active"
     stage: "ideation"
     progress: 0.0
     health: "HEALTHY"
-  - id: "011-shared-input-validation"
-    title: "Shared Input Validation Across All Kai Packages"
+  - id: "012-superviseur-autonome-boucle-complete"
+    title: "Superviseur Autonome Pour Boucle Complète Produit-Implémentation"
     status: "active"
     stage: "ideation"
     progress: 0.0

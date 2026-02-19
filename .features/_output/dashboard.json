@@ -1,13 +1,19 @@
 {
-  "generated": "2026-02-18",
-  "total_features": 7,
+  "generated": "2026-02-18T22:00:00Z",
+  "total_features": 12,
   "by_stage": {
-    "release": 5,
-    "test": 2
+    "ideation": 2,
+    "spec": 0,
+    "plan": 0,
+    "tasks": 0,
+    "implement": 1,
+    "test": 4,
+    "release": 5
   },
   "by_health": {
-    "HEALTHY": 5,
-    "WARNING": 2
+    "HEALTHY": 7,
+    "WARNING": 5,
+    "CRITICAL": 0
   },
   "features": [
     {
@@ -16,7 +22,7 @@
       "stage": "release",
       "progress": 100,
       "health": "HEALTHY",
-      "agreement": "none"
+      "agreement": "NOT_APPLICABLE"
     },
     {
       "id": "002-agreement-system",
@@ -24,7 +30,7 @@
       "stage": "release",
       "progress": 100,
       "health": "HEALTHY",
-      "agreement": "none"
+      "agreement": "NOT_APPLICABLE"
     },
     {
       "id": "003-feature-lifecycle",
@@ -32,7 +38,7 @@
       "stage": "release",
       "progress": 100,
       "health": "HEALTHY",
-      "agreement": "none"
+      "agreement": "NOT_APPLICABLE"
     },
     {
       "id": "004-mermaid-workbench",
@@ -40,7 +46,7 @@
       "stage": "release",
       "progress": 100,
       "health": "HEALTHY",
-      "agreement": "none"
+      "agreement": "NOT_APPLICABLE"
     },
     {
       "id": "005-tcsetup",
@@ -48,7 +54,7 @@
       "stage": "release",
       "progress": 100,
       "health": "HEALTHY",
-      "agreement": "none"
+      "agreement": "NOT_APPLICABLE"
     },
     {
       "id": "006-tcsetup-update",
@@ -56,7 +62,7 @@
       "stage": "test",
       "progress": 100,
       "health": "WARNING",
-      "agreement": "draft",
+      "agreement": "MISSING",
       "tasks": { "done": 6, "total": 6 }
     },
     {
@@ -65,8 +71,51 @@
       "stage": "test",
       "progress": 100,
       "health": "WARNING",
-      "agreement": "draft",
+      "agreement": "PENDING",
       "tasks": { "done": 28, "total": 28 }
+    },
+    {
+      "id": "008-product-manager",
+      "title": "Product Manager",
+      "stage": "implement",
+      "progress": 96,
+      "health": "WARNING",
+      "agreement": "MISSING",
+      "tasks": { "done": 22, "total": 23 }
+    },
+    {
+      "id": "009-qa-system",
+      "title": "QA System",
+      "stage": "test",
+      "progress": 100,
+      "health": "WARNING",
+      "agreement": "PASS",
+      "tasks": { "done": 17, "total": 17 }
+    },
+    {
+      "id": "010-feature-lifecycle-v2",
+      "title": "Feature Lifecycle V2",
+      "stage": "test",
+      "progress": 100,
+      "health": "WARNING",
+      "agreement": "MISSING",
+      "tasks": { "done": 40, "total": 40 }
+    },
+    {
+      "id": "011-shared-input-validation",
+      "title": "Shared Input Validation Across All Kai Packages",
+      "stage": "ideation",
+      "progress": 0,
+      "health": "HEALTHY",
+      "agreement": "MISSING"
+    },
+    {
+      "id": "012-superviseur-autonome-boucle-complete",
+      "title": "Superviseur Autonome Pour Boucle Complete Produit-Implementation",
+      "stage": "ideation",
+      "progress": 0,
+      "health": "HEALTHY",
+      "agreement": "MISSING"
     }
   ]
 }
