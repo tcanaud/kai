@@ -2,7 +2,7 @@
 # Auto-maintained by /feature.status, /feature.list, and /feature.discover
 
 version: "1.0"
-updated: "2026-02-19T17:08:21Z"
+updated: "2026-02-19T18:20:01Z"
 
 features:
   - id: "001-adr-system"
@@ -85,6 +85,12 @@ features:
     health: "HEALTHY"
   - id: "014-playbook-step-model"
     title: "Playbook Step Model Selection"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"
+  - id: "015-playbook-cli-commands"
+    title: "Add status and list commands to @tcanaud/playbook CLI"
     status: "active"
     stage: "ideation"
     progress: 0.0

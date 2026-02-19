@@ -84,3 +84,10 @@ agreements:
     path: "014-playbook-step-model/agreement.yaml"
     created: "2026-02-19"
     updated: "2026-02-19"
+
+  - feature_id: "015-playbook-cli-commands"
+    title: "Playbook CLI Commands (Status & List)"
+    status: "draft"
+    path: "015-playbook-cli-commands/agreement.yaml"
+    created: "2026-02-19"
+    updated: "2026-02-19"

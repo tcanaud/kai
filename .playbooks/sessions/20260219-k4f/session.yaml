@@ -1,0 +1,11 @@
+session_id: "20260219-k4f"
+playbook: "intention-to-pr-haiku"
+feature: "015-playbook-cli-commands"
+args:
+  intention: "Ajouter deux commandes à packages/playbook pour avoir npx @tcanaud/playbook status et npx @tcanaud/playbook list. L'un pour avoir le status de toutes les sessions de playbook en cours de fonctionnement et l'autre pour lister l'ensemble des sessions playbook. une version json et une version polish (par défaut) (avoir un bon rendu dans le terminal)"
+  feature: "015-playbook-cli-commands"
+status: "in_progress"
+started_at: "2026-02-19T19:00:00Z"
+completed_at: ""
+current_step: "pr"
+worktree: ""

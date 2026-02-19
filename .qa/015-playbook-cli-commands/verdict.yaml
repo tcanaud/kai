@@ -1,0 +1,91 @@
+qa_version: "1.0"
+feature_id: "015-playbook-cli-commands"
+verdict: "FAIL"
+executed: "2026-02-19T20:55:00Z"
+summary: "2/12 scripts passed, 10 failed"
+total_scripts: 12
+passed: 2
+failed: 10
+
+results:
+  - script: "test-status-single-session.sh"
+    criterion_ref: "US1.AC1"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output missing expected session ID '20260219-abc'. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-status-multiple-sessions.sh"
+    criterion_ref: "US1.AC2"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output missing expected session ID '20260219-abc'. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-status-no-sessions.sh"
+    criterion_ref: "US1.AC3"
+    status: "PASS"
+    exit_code: 0
+    duration: "~1s"
+
+  - script: "test-list-json-valid.sh"
+    criterion_ref: "US2.AC1"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output marked as invalid JSON due to warning message prepended before JSON. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-list-json-schema.sh"
+    criterion_ref: "US2.AC2"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Test claims JSON objects missing 'id' field, but 'id' field is present in actual output. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-list-json-empty.sh"
+    criterion_ref: "US2.AC3"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output not empty array as expected (test expects no sessions, but sessions exist). Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-list-all-sessions.sh"
+    criterion_ref: "US3.AC1"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output missing expected session. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-list-chronological-sort.sh"
+    criterion_ref: "US3.AC2"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Not all expected sessions found in output. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-terminal-formatting-status.sh"
+    criterion_ref: "US4.AC1"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output missing expected session data. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
+
+  - script: "test-terminal-width.sh"
+    criterion_ref: "US4.AC2"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Output exceeds 80 character width limit (maximum line length = 254 characters). Warning message prepended to output."
+
+  - script: "test-status-cli-interface.sh"
+    criterion_ref: "IF1"
+    status: "PASS"
+    exit_code: 0
+    duration: "~1s"
+
+  - script: "test-list-cli-interface.sh"
+    criterion_ref: "IF2"
+    status: "FAIL"
+    exit_code: 1
+    duration: "~1s"
+    failure_detail: "Default output missing expected running session. Warning about unreadable session file (20260219-m4x/session.yaml not found)."
