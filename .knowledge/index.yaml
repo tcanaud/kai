@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-18T20:46:44.289Z"
+generated: "2026-02-19T01:51:07.469Z"
 
 guides:
   - id: commit-and-push
@@ -124,7 +124,7 @@ features:
   - id: 008-product-manager
     title: "Product Manager"
     path: .features/008-product-manager.yaml
-    stage: ideation
+    stage: implement
     topics: [product, manager]
   - id: 009-qa-system
     title: "QA System"
@@ -134,5 +134,15 @@ features:
   - id: 010-feature-lifecycle-v2
     title: "Feature Lifecycle V2"
     path: .features/010-feature-lifecycle-v2.yaml
-    stage: ideation
+    stage: test
     topics: [feature, lifecycle]
+  - id: 011-shared-input-validation
+    title: "Shared Input Validation Across All Kai Packages"
+    path: .features/011-shared-input-validation.yaml
+    stage: ideation
+    topics: [shared, input, validation, across, all, kai, packages]
+  - id: 012-superviseur-autonome-boucle-complete
+    title: "Superviseur Autonome Pour Boucle Complète Produit-Implémentation"
+    path: .features/012-superviseur-autonome-boucle-complete.yaml
+    stage: ideation
+    topics: [superviseur, autonome, pour, boucle, complète, produit, implémentation]
