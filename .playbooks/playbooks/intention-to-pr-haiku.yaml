@@ -1,0 +1,157 @@
+name: "intention-to-pr-haiku"
+description: "End-to-end flow from product intention to pull request — all steps executed with haiku model"
+version: "1.0"
+
+args:
+  - name: "intention"
+    description: "Free-text product intention or feature idea"
+    required: true
+  - name: "feature"
+    description: "Feature branch name (e.g., 013-my-feature)"
+    required: true
+
+steps:
+  - id: "intake"
+    command: "/product.intake"
+    args: "{{intention}}"
+    model: "haiku"
+    autonomy: "auto"
+    preconditions: []
+    postconditions: []
+    error_policy: "gate"
+    escalation_triggers:
+      - "subagent_error"
+
+  - id: "triage"
+    command: "/product.triage"
+    args: ""
+    model: "haiku"
+    autonomy: "auto"
+    preconditions: []
+    postconditions: []
+    error_policy: "gate"
+    escalation_triggers:
+      - "subagent_error"
+
+  - id: "promote"
+    command: "/product.promote"
+    args: ""
+    model: "haiku"
+    autonomy: "gate_always"
+    preconditions: []
+    postconditions: []
+    error_policy: "gate"
+    escalation_triggers:
+      - "subagent_error"
+
+  - id: "specify"
+    command: "/speckit.specify"
+    args: "{{feature}}"
+    model: "haiku"
+    autonomy: "auto"
+    preconditions: []
+    postconditions:
+      - "spec_exists"
+    error_policy: "gate"
+    escalation_triggers:
+      - "postcondition_fail"
+      - "subagent_error"
+
+  - id: "plan"
+    command: "/speckit.plan"
+    args: ""
+    model: "haiku"
+    autonomy: "auto"
+    preconditions:
+      - "spec_exists"
+    postconditions:
+      - "plan_exists"
+    error_policy: "stop"
+    escalation_triggers: []
+
+  - id: "tasks"
+    command: "/speckit.tasks"
+    args: ""
+    model: "haiku"
+    autonomy: "auto"
+    preconditions:
+      - "plan_exists"
+    postconditions:
+      - "tasks_exists"
+    error_policy: "stop"
+    escalation_triggers: []
+
+  - id: "agreement"
+    command: "/agreement.create"
+    args: "{{feature}}"
+    model: "haiku"
+    autonomy: "auto"
+    preconditions:
+      - "tasks_exists"
+    postconditions:
+      - "agreement_exists"
+    error_policy: "gate"
+    escalation_triggers:
+      - "subagent_error"
+
+  - id: "implement"
+    command: "/speckit.implement"
+    args: ""
+    model: "haiku"
+    autonomy: "auto"
+    preconditions:
+      - "agreement_exists"
+    postconditions: []
+    error_policy: "retry_once"
+    escalation_triggers:
+      - "postcondition_fail"
+      - "subagent_error"
+
+  - id: "agreement-check"
+    command: "/agreement.check"
+    args: "{{feature}}"
+    model: "haiku"
+    autonomy: "gate_on_breaking"
+    preconditions: []
+    postconditions:
+      - "agreement_pass"
+    error_policy: "gate"
+    escalation_triggers:
+      - "agreement_breaking"
+
+  - id: "qa-plan"
+    command: "/qa.plan"
+    args: "{{feature}}"
+    model: "haiku"
+    autonomy: "auto"
+    preconditions:
+      - "agreement_pass"
+    postconditions:
+      - "qa_plan_exists"
+    error_policy: "stop"
+    escalation_triggers: []
+
+  - id: "qa-run"
+    command: "/qa.run"
+    args: "{{feature}}"
+    model: "haiku"
+    autonomy: "auto"
+    preconditions:
+      - "qa_plan_exists"
+    postconditions:
+      - "qa_verdict_pass"
+    error_policy: "gate"
+    escalation_triggers:
+      - "verdict_fail"
+
+  - id: "pr"
+    command: "/feature.pr"
+    args: "{{feature}}"
+    model: "haiku"
+    autonomy: "gate_always"
+    preconditions:
+      - "qa_verdict_pass"
+    postconditions:
+      - "pr_created"
+    error_policy: "stop"
+    escalation_triggers: []
