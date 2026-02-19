@@ -1,0 +1,11 @@
+session_id: "20260219-r8j"
+playbook: "intention-to-pr-haiku"
+feature: "016-fix-tcsetup-update"
+args:
+  intention: "Lorsque j'execute npx tcsetup update ; il fait mal le job dans _bmad/_config/agents/core-bmad-master.customize.yaml et _bmad/_config/agents/bmm-pm.customize.yaml car il append sans réfléchir les données. tcsetup est dans @packages/tcsetup/ il faut fixer ça proprement"
+  feature: "016-fix-tcsetup-update"
+status: "completed"
+started_at: "2026-02-19T20:00:00Z"
+completed_at: "2026-02-19T20:23:00Z"
+current_step: ""
+worktree: ""

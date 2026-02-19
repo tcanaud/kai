@@ -91,3 +91,10 @@ agreements:
     path: "015-playbook-cli-commands/agreement.yaml"
     created: "2026-02-19"
     updated: "2026-02-19"
+
+  - feature_id: "016-fix-tcsetup-update"
+    title: "Fix tcsetup Update Configuration Merging"
+    status: "draft"
+    path: "016-fix-tcsetup-update/agreement.yaml"
+    created: "2026-02-19"
+    updated: "2026-02-19"

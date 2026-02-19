@@ -1,0 +1,69 @@
+qa_version: "1.0"
+
+feature_id: "016-fix-tcsetup-update"
+generated: "2026-02-19T00:00:00Z"
+generator: "qa.plan"
+
+checksums:
+  spec_md:
+    path: "specs/016-fix-tcsetup-update/spec.md"
+    sha256: "ccc5b59064777d00aa445f3285413bcd42b9d98351338c4a9b9b45d308e9ff5f"
+  agreement_yaml:
+    path: ".agreements/016-fix-tcsetup-update/agreement.yaml"
+    sha256: "2c6460a91371cf2085ae81026e36ce47379809d1f6e950e33cfa3301388d8182"
+
+scripts:
+  - filename: "test-no-duplication-after-update.js"
+    criterion_ref: "US1.AC1"
+    criterion_text: "Given a project with BMAD installed and custom memories/menu items in core-bmad-master.customize.yaml, When user runs `npx tcsetup update`, Then the customize.yaml file contains the same configuration as before with no duplication"
+    type: "acceptance"
+  - filename: "test-no-appended-data.js"
+    criterion_ref: "US1.AC2"
+    criterion_text: "Given a project with BMAD installed and custom settings in bmm-pm.customize.yaml, When user runs `npx tcsetup update`, Then the customize.yaml file contents remain unchanged with no appended data"
+    type: "acceptance"
+  - filename: "test-deduplication-of-corrupted-files.js"
+    criterion_ref: "US1.AC3"
+    criterion_text: "Given a project where customize.yaml files have been previously corrupted with duplicates, When user runs `npx tcsetup update`, Then the duplicates are intelligently merged/deduplicated into a single copy"
+    type: "acceptance"
+  - filename: "test-intelligent-merge-new-sections.js"
+    criterion_ref: "US2.AC1"
+    criterion_text: "Given a customize.yaml with existing configuration, When an update needs to add new sections, Then those sections are added without duplicating existing content"
+    type: "acceptance"
+  - filename: "test-preserve-existing-configuration.js"
+    criterion_ref: "US2.AC2"
+    criterion_text: "Given a customize.yaml with existing configuration that should not be modified, When an update runs, Then existing configuration is preserved as-is"
+    type: "acceptance"
+  - filename: "test-handle-missing-file.js"
+    criterion_ref: "US3.AC1"
+    criterion_text: "Given a customize.yaml file is missing, When update runs, Then the file is created with default/new content if needed, or skipped gracefully"
+    type: "acceptance"
+  - filename: "test-handle-invalid-yaml.js"
+    criterion_ref: "US3.AC2"
+    criterion_text: "Given a customize.yaml file has invalid YAML syntax, When update runs, Then a clear error message is displayed and the file is not corrupted further"
+    type: "acceptance"
+  - filename: "test-handle-empty-file.js"
+    criterion_ref: "US3.AC3"
+    criterion_text: "Given a customize.yaml file is empty or has only comments, When update runs, Then new configuration is added correctly"
+    type: "acceptance"
+  - filename: "test-api-merge-result-methods.js"
+    criterion_ref: "IF1"
+    criterion_text: "mergeYAML(existing, update, options) → MergeResult with methods toYAML(), validate()"
+    type: "interface"
+  - filename: "test-api-array-deduplication.js"
+    criterion_ref: "IF2"
+    criterion_text: "mergeYAML.arrays(existing, update) - Deduplicates two arrays using deep equality check"
+    type: "interface"
+  - filename: "test-api-object-merging.js"
+    criterion_ref: "IF3"
+    criterion_text: "mergeYAML.objects(existing, update) - Recursively merges two objects, preserving existing keys and adding new ones"
+    type: "interface"
+  - filename: "test-api-deep-equality.js"
+    criterion_ref: "IF4"
+    criterion_text: "mergeYAML.deepEqual(a, b) - Tests deep equality between two values for deduplication"
+    type: "interface"
+
+total_scripts: 12
+by_type:
+  acceptance: 8
+  interface: 4
+  edge_case: 0

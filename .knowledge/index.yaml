@@ -1,5 +1,5 @@
 version: "1.0"
-generated: "2026-02-19T20:15:30.941Z"
+generated: "2026-02-19T20:59:13.962Z"
 
 guides:
   - id: commit-and-push
@@ -161,3 +161,8 @@ features:
     path: .features/015-playbook-cli-commands.yaml
     stage: ideation
     topics: [add, status, and, list, commands, @tcanaud, playbook, cli]
+  - id: 016-fix-tcsetup-update
+    title: "Fix tcsetup merge logic for customize.yaml files"
+    path: .features/016-fix-tcsetup-update.yaml
+    stage: ideation
+    topics: [fix, tcsetup, merge, logic, for, customize.yaml, files]

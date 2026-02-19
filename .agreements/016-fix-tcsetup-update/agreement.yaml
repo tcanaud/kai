@@ -1,0 +1,96 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "016-fix-tcsetup-update"
+title: "Fix tcsetup Update Configuration Merging"
+status: "draft"
+created: "2026-02-19"
+updated: "2026-02-19"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+# Source: Spec Kit specification
+intent: |
+  When developers run `npx tcsetup update`, their custom BMAD agent configurations
+  must remain intact without duplication or corruption. Currently, the update command
+  appends configuration data blindly to customize.yaml files, causing duplicate sections
+  when updates are run multiple times. We promise to fix this by implementing intelligent
+  YAML merging with proper deduplication for arrays and recursive object merging.
+
+user_outcomes:
+  - "Developers can safely update tcsetup without losing or corrupting custom configurations"
+  - "Configuration updates are idempotent: running update twice produces same result as running once"
+  - "Configuration files maintain valid YAML syntax and can be parsed after every update"
+
+acceptance_criteria:
+  - criterion: "Running `npx tcsetup update` twice consecutively results in identical configuration files with no accumulation of duplicates"
+    verifiable: true
+  - criterion: "100% of customize.yaml files in BMAD projects contain no duplicate configuration sections after running update"
+    verifiable: true
+  - criterion: "Custom configuration values (memories, menu items, persona settings) are preserved exactly as set before the update"
+    verifiable: true
+  - criterion: "All existing valid YAML files maintain valid YAML syntax after update (parseability verified)"
+    verifiable: true
+  - criterion: "Edge cases are handled gracefully: missing files, invalid YAML, empty files, partially corrupted files"
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+# Source: Spec Kit contract specification
+interfaces:
+  - type: "api"
+    path: "packages/tcsetup/src/yaml-merge.js"
+    contract: "mergeYAML(existing, update, options) → MergeResult with methods toYAML(), validate()"
+  - type: "api"
+    path: "mergeYAML.arrays(existing, update)"
+    contract: "Deduplicates two arrays using deep equality check"
+  - type: "api"
+    path: "mergeYAML.objects(existing, update)"
+    contract: "Recursively merges two objects, preserving existing keys and adding new ones"
+  - type: "api"
+    path: "mergeYAML.deepEqual(a, b)"
+    contract: "Tests deep equality between two values for deduplication"
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "performance"
+    description: "YAML merging operations must complete in <100ms per file"
+  - type: "compatibility"
+    description: "Must work with Node.js >=18.0.0 using ESM only, zero runtime dependencies"
+  - type: "compatibility"
+    description: "Must handle customize.yaml files with typical size 50-500 lines"
+  - type: "security"
+    description: "Must validate YAML syntax before writing to prevent corruption"
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad:
+    - ".bmad/_config/agents/core-bmad-master.customize.yaml"
+    - ".bmad/_config/agents/bmm-pm.customize.yaml"
+  speckit:
+    - "specs/016-fix-tcsetup-update/spec.md"
+    - "specs/016-fix-tcsetup-update/plan.md"
+    - "specs/016-fix-tcsetup-update/contracts/yaml-merge-api.md"
+    - "specs/016-fix-tcsetup-update/data-model.md"
+    - "specs/016-fix-tcsetup-update/quickstart.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad:
+    - ".bmad/_config/agents/"
+  speckit:
+    - "specs/016-fix-tcsetup-update/"
+  code:
+    - "packages/tcsetup/src/"
+    - "packages/agreement-system/src/"
+    - "packages/feature-lifecycle/src/"
+
+checksums: {}

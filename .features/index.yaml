@@ -95,3 +95,9 @@ features:
     stage: "ideation"
     progress: 0.0
     health: "HEALTHY"
+  - id: "016-fix-tcsetup-update"
+    title: "Fix tcsetup merge logic for customize.yaml files"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"
