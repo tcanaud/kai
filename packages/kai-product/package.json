@@ -1,6 +1,6 @@
 {
   "name": "@tcanaud/kai-product",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Atomic CLI for kai product operations — move, promote, triage, reindex, check",
   "bin": {
