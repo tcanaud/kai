@@ -1,5 +1,5 @@
 product_version: "1.0"
-updated: "2026-02-20T00:00:00Z"
+updated: "2026-02-20T12:31:52.006Z"
 
 feedbacks:
   total: 7
@@ -111,5 +111,5 @@ backlogs:
       created: "2026-02-20"
 
 metrics:
-  feedback_to_backlog_rate: 1.0
-  backlog_to_feature_rate: 1.0
+  feedback_to_backlog_rate: 1.00
+  backlog_to_feature_rate: 1.00

@@ -1,0 +1,122 @@
+qa_version: "1.0"
+
+feature_id: "018-cli-kai-product"
+verdict: "PASS"
+generated: "2026-02-20T12:43:00Z"
+generator: "qa.run"
+
+results:
+  total: 22
+  passed: 22
+  failed: 0
+
+scripts:
+  - filename: "test-reindex-generates-accurate-counts.js"
+    criterion_ref: "US1.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-reindex-corrects-stale-index.js"
+    criterion_ref: "US1.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-reindex-empty-product-dir.js"
+    criterion_ref: "US1.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-move-single-backlog.js"
+    criterion_ref: "US2.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-move-bulk-backlogs.js"
+    criterion_ref: "US2.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-move-nonexistent-backlog.js"
+    criterion_ref: "US2.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-move-already-in-target-status.js"
+    criterion_ref: "US2.AC4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-check-status-directory-desync.js"
+    criterion_ref: "US3.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-check-broken-chain.js"
+    criterion_ref: "US3.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-check-stale-feedbacks.js"
+    criterion_ref: "US3.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-check-clean-product-dir.js"
+    criterion_ref: "US3.AC4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-check-index-desync.js"
+    criterion_ref: "US3.AC5"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-promote-backlog-to-feature.js"
+    criterion_ref: "US4.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-promote-already-promoted.js"
+    criterion_ref: "US4.AC2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-promote-no-feedbacks.js"
+    criterion_ref: "US4.AC3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-triage-groups-related-feedbacks.js"
+    criterion_ref: "US5.AC1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-triage-no-new-feedbacks.js"
+    criterion_ref: "US5.AC4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-if1-move-all-or-nothing.js"
+    criterion_ref: "IF1"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-if2-promote-contract.js"
+    criterion_ref: "IF2"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-if3-triage-plan-output.js"
+    criterion_ref: "IF3"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-if4-reindex-contract.js"
+    criterion_ref: "IF4"
+    status: "PASS"
+    exit_code: 0
+
+  - filename: "test-if5-check-json-flag.js"
+    criterion_ref: "IF5"
+    status: "PASS"
+    exit_code: 0
