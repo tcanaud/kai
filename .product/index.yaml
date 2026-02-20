@@ -1,11 +1,11 @@
 product_version: "1.0"
-updated: "2026-02-19T21:28:00Z"
+updated: "2026-02-20T12:31:52.006Z"
 
 feedbacks:
-  total: 6
+  total: 7
   by_status:
     new: 0
-    triaged: 6
+    triaged: 7
     excluded: 0
     resolved: 0
   by_category:
@@ -13,7 +13,7 @@ feedbacks:
     bug: 1
     optimization: 0
     evolution: 2
-    new-feature: 3
+    new-feature: 4
   items:
     - id: "FB-001"
       title: "Add shared input validation utility across all packages"
@@ -51,14 +51,20 @@ feedbacks:
       category: "bug"
       priority: "high"
       created: "2026-02-19"
+    - id: "FB-102"
+      title: "Create @tcanaud/kai-product CLI to replace LLM tool-call plumbing with atomic commands"
+      status: "triaged"
+      category: "new-feature"
+      priority: null
+      created: "2026-02-20"
 
 backlogs:
-  total: 6
+  total: 7
   by_status:
     open: 0
     in-progress: 0
     done: 0
-    promoted: 6
+    promoted: 7
     cancelled: 0
   items:
     - id: "BL-001"
@@ -97,7 +103,13 @@ backlogs:
       category: "bug"
       priority: "high"
       created: "2026-02-19"
+    - id: "BL-007"
+      title: "CLI atomique @tcanaud/kai-product pour opérations produit"
+      status: "promoted"
+      category: "new-feature"
+      priority: "high"
+      created: "2026-02-20"
 
 metrics:
-  feedback_to_backlog_rate: 1.0
-  backlog_to_feature_rate: 1.0
+  feedback_to_backlog_rate: 1.00
+  backlog_to_feature_rate: 1.00

@@ -98,3 +98,10 @@ agreements:
     path: "016-fix-tcsetup-update/agreement.yaml"
     created: "2026-02-19"
     updated: "2026-02-19"
+
+  - feature_id: "018-cli-kai-product"
+    title: "CLI Atomique @tcanaud/kai-product pour Opérations Produit"
+    status: "draft"
+    path: "018-cli-kai-product/agreement.yaml"
+    created: "2026-02-20"
+    updated: "2026-02-20"

@@ -1,0 +1,130 @@
+qa_version: "1.0"
+
+feature_id: "018-cli-kai-product"
+generated: "2026-02-20T00:00:00Z"
+generator: "qa.plan"
+
+checksums:
+  spec_md:
+    path: "specs/018-cli-kai-product/spec.md"
+    sha256: "70d683ab1e15b5f18d5f0b21c46c3433b3b6260efa5abecabea705096fa7a71a"
+  agreement_yaml:
+    path: ".agreements/018-cli-kai-product/agreement.yaml"
+    sha256: "964b620e04b68815bca66231b0cd0bd4112346fd9ab5ec20d2f87b6012d5feef"
+
+scripts:
+  - filename: "test-reindex-generates-accurate-counts.js"
+    criterion_ref: "US1.AC1"
+    criterion_text: "Given a .product/ directory with feedbacks and backlogs across all status subdirectories, When I run kai-product reindex, Then index.yaml is regenerated with accurate counts by status, by category, and complete item listings."
+    type: "acceptance"
+
+  - filename: "test-reindex-corrects-stale-index.js"
+    criterion_ref: "US1.AC2"
+    criterion_text: "Given an index.yaml that is out of sync with the actual files (stale entries, missing entries), When I run kai-product reindex, Then the index is corrected to match filesystem reality."
+    type: "acceptance"
+
+  - filename: "test-reindex-empty-product-dir.js"
+    criterion_ref: "US1.AC3"
+    criterion_text: "Given an empty .product/ directory structure with no feedbacks or backlogs, When I run kai-product reindex, Then an index.yaml is generated with all counts at zero."
+    type: "acceptance"
+
+  - filename: "test-move-single-backlog.js"
+    criterion_ref: "US2.AC1"
+    criterion_text: "Given a backlog BL-005 in backlogs/open/, When I run kai-product move BL-005 in-progress, Then the file is moved to backlogs/in-progress/, its frontmatter status is updated to in-progress, and index.yaml is regenerated."
+    type: "acceptance"
+
+  - filename: "test-move-bulk-backlogs.js"
+    criterion_ref: "US2.AC2"
+    criterion_text: "Given multiple backlogs BL-001,BL-002,BL-003, When I run kai-product move BL-001,BL-002,BL-003 done, Then all three files are moved, all frontmatter updated, and index regenerated in one operation."
+    type: "acceptance"
+
+  - filename: "test-move-nonexistent-backlog.js"
+    criterion_ref: "US2.AC3"
+    criterion_text: "Given a backlog ID that does not exist, When I run kai-product move BL-999 done, Then the command exits with a clear error message identifying the missing item and no files are modified."
+    type: "acceptance"
+
+  - filename: "test-move-already-in-target-status.js"
+    criterion_ref: "US2.AC4"
+    criterion_text: "Given a backlog already in the target status, When I run kai-product move BL-005 open and BL-005 is already in open/, Then the command reports 'already in target status' and makes no changes."
+    type: "acceptance"
+
+  - filename: "test-check-status-directory-desync.js"
+    criterion_ref: "US3.AC1"
+    criterion_text: "Given a backlog file in backlogs/open/ whose frontmatter says status: done, When I run kai-product check, Then a status/directory desync warning is reported for that item."
+    type: "acceptance"
+
+  - filename: "test-check-broken-chain.js"
+    criterion_ref: "US3.AC2"
+    criterion_text: "Given a feedback linking to a backlog ID that does not exist, When I run kai-product check, Then a broken chain warning is reported."
+    type: "acceptance"
+
+  - filename: "test-check-stale-feedbacks.js"
+    criterion_ref: "US3.AC3"
+    criterion_text: "Given feedbacks in feedbacks/new/ that are older than 14 days, When I run kai-product check, Then a staleness warning is reported for each."
+    type: "acceptance"
+
+  - filename: "test-check-clean-product-dir.js"
+    criterion_ref: "US3.AC4"
+    criterion_text: "Given a fully consistent .product/ directory, When I run kai-product check, Then the command reports no issues and exits with success."
+    type: "acceptance"
+
+  - filename: "test-check-index-desync.js"
+    criterion_ref: "US3.AC5"
+    criterion_text: "Given an index.yaml that is out of sync with files, When I run kai-product check, Then an index desync issue is reported."
+    type: "acceptance"
+
+  - filename: "test-promote-backlog-to-feature.js"
+    criterion_ref: "US4.AC1"
+    criterion_text: "Given an open backlog BL-007 with linked feedback FB-102, When I run kai-product promote BL-007, Then a .features/NNN-{name}.yaml is created with the next sequential feature number, BL-007 is moved to backlogs/promoted/ with updated frontmatter, FB-102 gets a feature link added, and all indexes are regenerated."
+    type: "acceptance"
+
+  - filename: "test-promote-already-promoted.js"
+    criterion_ref: "US4.AC2"
+    criterion_text: "Given a backlog that is already promoted, When I run kai-product promote BL-003, Then the command exits with an error 'BL-003 is already promoted' and no files are modified."
+    type: "acceptance"
+
+  - filename: "test-promote-no-feedbacks.js"
+    criterion_ref: "US4.AC3"
+    criterion_text: "Given a backlog with no linked feedbacks, When I run kai-product promote BL-010, Then the promotion still succeeds (feedbacks are optional), creating the feature YAML and updating the backlog."
+    type: "acceptance"
+
+  - filename: "test-triage-groups-related-feedbacks.js"
+    criterion_ref: "US5.AC1"
+    criterion_text: "Given three new feedbacks in feedbacks/new/ describing related issues, When I run kai-product triage, Then related feedbacks are grouped together, a single backlog item is created for the group in backlogs/open/, feedbacks are moved to feedbacks/triaged/ with backlog links, and the index is regenerated."
+    type: "acceptance"
+
+  - filename: "test-triage-no-new-feedbacks.js"
+    criterion_ref: "US5.AC4"
+    criterion_text: "Given no new feedbacks in feedbacks/new/, When I run kai-product triage, Then the command reports 'No new feedbacks to triage' and exits cleanly."
+    type: "acceptance"
+
+  - filename: "test-if1-move-all-or-nothing.js"
+    criterion_ref: "IF1"
+    criterion_text: "Move one or more backlog items to a new status; all-or-nothing semantics."
+    type: "interface"
+
+  - filename: "test-if2-promote-contract.js"
+    criterion_ref: "IF2"
+    criterion_text: "Promote a backlog to a feature; create feature YAML, update backlog + feedbacks, regenerate indexes."
+    type: "interface"
+
+  - filename: "test-if3-triage-plan-output.js"
+    criterion_ref: "IF3"
+    criterion_text: "Scan feedbacks/new/, output triage plan, create backlogs, move feedbacks, regenerate index."
+    type: "interface"
+
+  - filename: "test-if4-reindex-contract.js"
+    criterion_ref: "IF4"
+    criterion_text: "Regenerate index.yaml from filesystem state."
+    type: "interface"
+
+  - filename: "test-if5-check-json-flag.js"
+    criterion_ref: "IF5"
+    criterion_text: "Detect and report integrity issues; machine-readable JSON output with --json flag."
+    type: "interface"
+
+total_scripts: 22
+by_type:
+  acceptance: 17
+  interface: 5
+  edge_case: 0

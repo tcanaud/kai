@@ -1,0 +1,10 @@
+session_id: "20260220-m9k"
+playbook: "auto-feature"
+feature: "018-cli-kai-product"
+args:
+  feature: "018-cli-kai-product"
+status: "in_progress"
+started_at: "2026-02-20T12:00:00Z"
+completed_at: ""
+current_step: "qa-run"
+worktree: ""

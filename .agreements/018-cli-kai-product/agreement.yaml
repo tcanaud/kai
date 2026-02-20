@@ -1,0 +1,88 @@
+agreement_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "018-cli-kai-product"
+title: "CLI Atomique @tcanaud/kai-product pour Opérations Produit"
+status: "draft"
+created: "2026-02-20"
+updated: "2026-02-20"
+owner: "tcanaud"
+
+# ── Product Intent ────────────────────────────────────
+intent: |
+  Deliver a zero-dependency Node.js ESM CLI package `@tcanaud/kai-product` that
+  exposes five atomic subcommands (move, promote, triage, reindex, check) to
+  replace the current 5-10-tool-call product operations with single CLI
+  invocations, reducing token cost per operation by at least 80%.
+
+user_outcomes:
+  - "Any product operation completes in one CLI invocation instead of 5-10 tool calls."
+  - "Bulk status transitions, promotions, and integrity checks are atomic and reliable."
+  - "Token cost per product operation is reduced by at least 80%."
+
+acceptance_criteria:
+  - criterion: "All five subcommands (move, promote, triage, reindex, check) are available via `npx @tcanaud/kai-product`."
+    verifiable: true
+  - criterion: "Bulk move of 10 backlog items completes in under 5 seconds."
+    verifiable: true
+  - criterion: "`reindex` produces an index.yaml identical to a manual full scan with zero discrepancies."
+    verifiable: true
+  - criterion: "`check` detects 100% of seeded integrity issues (status desyncs, orphans, broken chains, stale feedbacks, index desyncs)."
+    verifiable: true
+  - criterion: "Zero runtime npm dependencies — Node.js built-ins only."
+    verifiable: true
+
+# ── Interfaces ────────────────────────────────────────
+interfaces:
+  - type: "cli"
+    path: "kai-product move <ids> <status>"
+    contract: "Move one or more backlog items to a new status; all-or-nothing semantics."
+  - type: "cli"
+    path: "kai-product promote <id>"
+    contract: "Promote a backlog to a feature; create feature YAML, update backlog + feedbacks, regenerate indexes."
+  - type: "cli"
+    path: "kai-product triage"
+    contract: "Scan feedbacks/new/, output triage plan, create backlogs, move feedbacks, regenerate index."
+  - type: "cli"
+    path: "kai-product reindex"
+    contract: "Regenerate index.yaml from filesystem state."
+  - type: "cli"
+    path: "kai-product check [--json]"
+    contract: "Detect and report integrity issues; machine-readable JSON output with --json flag."
+
+# ── Non-Functional Constraints ────────────────────────
+constraints:
+  - type: "compatibility"
+    description: "Zero runtime npm dependencies; Node.js built-ins only via node: protocol imports."
+  - type: "performance"
+    description: "Any single operation < 1 second; bulk move of 10 items < 5 seconds."
+
+# ── Breaking Change Policy ────────────────────────────
+breaking_changes:
+  policy: "agreement-first"
+  history: []
+
+# ── Traceability ──────────────────────────────────────
+references:
+  bmad: []
+  speckit:
+    - "specs/018-cli-kai-product/spec.md"
+    - "specs/018-cli-kai-product/plan.md"
+    - "specs/018-cli-kai-product/tasks.md"
+    - "specs/018-cli-kai-product/contracts/cli-interface.md"
+    - "specs/018-cli-kai-product/contracts/file-schemas.md"
+  code: []
+  adr:
+    - ".adr/global/20260218-esm-only-zero-deps.md"
+    - ".adr/global/20260218-file-based-artifact-tracking.md"
+    - ".adr/global/20260218-claude-code-as-primary-ai-interface.md"
+
+# ── Drift Detection ──────────────────────────────────
+watched_paths:
+  bmad: []
+  speckit:
+    - "specs/018-cli-kai-product/"
+  code:
+    - "packages/kai-product/"
+
+checksums: {}
