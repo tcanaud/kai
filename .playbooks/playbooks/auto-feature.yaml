@@ -11,6 +11,7 @@ steps:
   - id: "plan"
     command: "/speckit.plan"
     args: ""
+    model: "sonnet"
     autonomy: "auto"
     preconditions:
       - "spec_exists"
@@ -22,6 +23,7 @@ steps:
   - id: "tasks"
     command: "/speckit.tasks"
     args: ""
+    model: "sonnet"
     autonomy: "auto"
     preconditions:
       - "plan_exists"
@@ -33,6 +35,7 @@ steps:
   - id: "agreement"
     command: "/agreement.create"
     args: "{{feature}}"
+    model: "sonnet"
     autonomy: "auto"
     preconditions:
       - "tasks_exists"
@@ -45,6 +48,7 @@ steps:
   - id: "implement"
     command: "/speckit.implement"
     args: ""
+    model: "opus"
     autonomy: "auto"
     preconditions:
       - "agreement_exists"
@@ -57,6 +61,7 @@ steps:
   - id: "agreement-check"
     command: "/agreement.check"
     args: "{{feature}}"
+    model: "sonnet"
     autonomy: "gate_on_breaking"
     preconditions: []
     postconditions:
@@ -68,6 +73,7 @@ steps:
   - id: "qa-plan"
     command: "/qa.plan"
     args: "{{feature}}"
+    model: "sonnet"
     autonomy: "auto"
     preconditions:
       - "agreement_pass"
@@ -79,6 +85,7 @@ steps:
   - id: "qa-run"
     command: "/qa.run"
     args: "{{feature}}"
+    model: "opus"
     autonomy: "auto"
     preconditions:
       - "qa_plan_exists"
@@ -91,6 +98,7 @@ steps:
   - id: "pr"
     command: "/feature.pr"
     args: "{{feature}}"
+    model: "haiku"
     autonomy: "gate_always"
     preconditions:
       - "qa_verdict_pass"
