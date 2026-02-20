@@ -101,3 +101,9 @@ features:
     stage: "ideation"
     progress: 0.0
     health: "HEALTHY"
+  - id: "017-kai-ui"
+    title: "Kai UI"
+    status: "active"
+    stage: "ideation"
+    progress: 0.0
+    health: "HEALTHY"

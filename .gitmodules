@@ -25,3 +25,6 @@
 [submodule "packages/playbook"]
 	path = packages/playbook
 	url = https://github.com/tcanaud/playbook.git
+[submodule "packages/kai-ui"]
+	path = packages/kai-ui
+	url = https://github.com/tcanaud/kai-ui.git
